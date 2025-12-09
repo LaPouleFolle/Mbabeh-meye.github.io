@@ -6,76 +6,92 @@
     <title>Portfolio - Arsène Gaby MBABEH MEYE</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
     <nav class="navbar">
-        <div class="logo">Arsène MBABEH MEYE</div>
+        <div class="logo">Arsène M.</div>
         <ul class="nav-links">
-            <li><a href="#about">À propos</a></li>
-            <li><a href="#skills">Compétences</a></li>
-            <li><a href="#experience">Expérience</a></li>
-            <li><a href="#projects">Projets</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#" onclick="showSection('home')" class="active">Accueil</a></li>
+            <li><a href="#" onclick="showSection('about')">À propos</a></li>
+            <li><a href="#" onclick="showSection('skills')">Compétences Data</a></li>
+            <li><a href="#" onclick="showSection('experience')">Parcours</a></li>
+            <li><a href="#" onclick="showSection('projects')">Projets</a></li>
         </ul>
     </nav>
 
-    <header class="hero">
-        <div class="hero-content">
-            <h1>Data Analyst</h1>
-            <h2>Alternant chez UTAC & Master Médas (CNAM Paris)</h2>
-            <p>Je transforme les données brutes en leviers décisionnels grâce à la statistique et la Business Intelligence.</p>
-            <a href="#projects" class="btn">Voir mes projets</a>
-            <a href="votre_cv.pdf" class="btn btn-outline" download>Télécharger mon CV</a>
-        </div>
-    </header>
-
-    <section id="about" class="section">
-        <div class="container">
-            <h3>À propos de moi</h3>
-            <p>
-                Actuellement étudiant en <strong>Master Médas</strong> (Médiation des savoirs et Nouvelles Générations) au CNAM de Paris [cite: 1896] 
-                et <strong>apprenti Data Analyst chez UTAC</strong>, je me spécialise dans le traitement et la valorisation de la donnée.
-            </p>
-            <p>
-                Diplômé du BUT Science des Données (Parcours EMS), j'ai acquis une solide expérience technique, notamment lors de mes missions 
-                au sein du <strong>SYDESL</strong>[cite: 661], où j'ai pu travailler sur l'intégralité de la chaîne de valeur de la donnée : 
-                de l'extraction SQL à la dataviz.
-            </p>
+    <section id="home" class="tab-content active-tab">
+        <div class="hero-container">
+            <div class="profile-photo-container">
+                <img src="https://via.placeholder.com/250" alt="Arsène Gaby MBABEH MEYE" class="profile-photo">
+            </div>
+            <h1>"Transformer la donnée en décision stratégique"</h1>
+            <p class="subtitle">Data Analyst | Master Médas & Alternant UTAC</p>
+            <div class="cta-buttons">
+                <button onclick="showSection('projects')" class="btn">Voir mes réalisations</button>
+                <a href="votre_cv.pdf" class="btn btn-outline" download>Télécharger mon CV</a>
+            </div>
         </div>
     </section>
 
-    <section id="skills" class="section bg-light">
+    <section id="about" class="tab-content" style="display:none;">
         <div class="container">
-            <h3>Compétences Techniques</h3>
-            <div class="skills-grid">
+            <h3>Mon Profil</h3>
+            <div class="about-text">
+                <p>
+                    Bonjour, je suis <strong>Arsène Gaby MBABEH MEYE</strong>.
+                </p>
+                <p>
+                    Actuellement étudiant en <strong>Master Médas</strong> (Médiation des savoirs et Nouvelles Générations) au CNAM de Paris 
+                    et <strong>apprenti Data Analyst chez UTAC</strong>, je me spécialise dans le traitement et la valorisation de la donnée.
+                </p>
+                <p>
+                    Mon parcours a débuté avec un BUT Science des Données (Parcours EMS), où j'ai acquis une rigueur mathématique et statistique.
+                    J'ai ensuite consolidé ces acquis lors de mes missions au sein du <strong>SYDESL</strong>, où j'ai pu travailler sur l'intégralité de la chaîne de valeur de la donnée : 
+                    de l'extraction SQL complexe à la création de tableaux de bord décisionnels.
+                </p>
+                <p>
+                    Ce qui me passionne ? Faire "parler" les chiffres pour aider les entreprises à optimiser leurs processus et prendre des décisions éclairées.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="tab-content" style="display:none;">
+        <div class="container">
+            <h3>Mes Compétences Techniques</h3>
+            <p style="text-align:center; margin-bottom: 20px;">Aperçu de ma maîtrise des outils Data</p>
+            
+            <div class="charts-wrapper">
+                <div class="chart-container">
+                    <canvas id="skillsChart"></canvas>
+                </div>
+            </div>
+
+            <div class="skills-grid" style="margin-top: 40px;">
                 <div class="skill-card">
                     <i class="fa-solid fa-database"></i>
-                    <h4>Data & BDD</h4>
-                    <p>SQL (Oracle), Modélisation (Looping) [cite: 689], ETL (Pentaho) </p>
+                    <h4>Data Engineering</h4>
+                    <p>SQL (Oracle, PL/SQL), ETL (Pentaho), Modélisation (Looping)</p>
                 </div>
                 <div class="skill-card">
                     <i class="fa-solid fa-code"></i>
                     <h4>Programmation</h4>
-                    <p>Python, R (Shiny, Tidyverse) [cite: 878], VBA [cite: 331]</p>
+                    <p>Python (Pandas), R (Shiny), VBA</p>
                 </div>
                 <div class="skill-card">
-                    <i class="fa-solid fa-chart-line"></i>
-                    <h4>Visualisation & BI</h4>
-                    <p>Power BI [cite: 1129], Tableau Software[cite: 498], Reporting décisionnel</p>
-                </div>
-                <div class="skill-card">
-                    <i class="fa-solid fa-brain"></i>
-                    <h4>Statistiques</h4>
-                    <p>Séries temporelles [cite: 1021], Régression, ACP[cite: 1053], Analyse de variance</p>
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <h4>Business Intelligence</h4>
+                    <p>Power BI (DAX), Tableau Software</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="experience" class="section">
+    <section id="experience" class="tab-content" style="display:none;">
         <div class="container">
-            <h3>Parcours Professionnel</h3>
+            <h3>Mon Parcours Professionnel & Académique</h3>
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-date">2024 - Présent</div>
@@ -86,61 +102,129 @@
                     </div>
                 </div>
                 <div class="timeline-item">
+                    <div class="timeline-date">2024 - Présent</div>
+                    <div class="timeline-content">
+                        <h4>Master Médas</h4>
+                        <span class="company">CNAM - Paris</span>
+                        <p>Master Médiation des savoirs et Nouvelles Générations.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
                     <div class="timeline-date">2023 - 2024</div>
                     <div class="timeline-content">
                         <h4>Chargé d'Études Statistiques (Alternance)</h4>
                         <span class="company">SYDESL - Mâcon</span>
                         <p>
-                            • Création d'un Data Warehouse et modélisation des données d'éclairage public[cite: 689].<br>
-                            • Développement de scripts SQL pour le calcul de pénalités de retard[cite: 60].<br>
-                            • Conception de tableaux de bord Power BI pour le suivi des prestataires[cite: 1129].
+                            • Création d'un Data Warehouse et modélisation des données.<br>
+                            • Scripts SQL pour le calcul de pénalités.<br>
+                            • Tableaux de bord Power BI.
                         </p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2021 - 2024</div>
+                    <div class="timeline-content">
+                        <h4>BUT Science des Données (EMS)</h4>
+                        <span class="company">IUT Lumière Lyon II</span>
+                        <p>Spécialisation Exploration et Modélisation Statistique.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="projects" class="section bg-light">
+    <section id="projects" class="tab-content" style="display:none;">
         <div class="container">
             <h3>Projets Réalisés</h3>
             <div class="projects-grid">
                 <div class="project-card">
+                    <div class="project-header" style="background-color: #f1c40f;">BI</div>
                     <div class="project-info">
-                        <h4>Dashboard SYDESL</h4>
-                        <p class="tech">Technos : Power BI, SQL, Looping</p>
-                        <p>Mise en place d'un outil décisionnel pour suivre 1104 dossiers de maintenance et analyser 727k€ de budget[cite: 1129]. Optimisation du suivi des délais d'intervention des entreprises.</p>
+                        <h4>Dashboard Décisionnel SYDESL</h4>
+                        <p class="tech">Outils : Power BI, SQL, Looping</p>
+                        <p>Suivi de 1104 dossiers de maintenance (727k€). Analyse des délais d'intervention et performance des prestataires.</p>
                     </div>
                 </div>
                 <div class="project-card">
+                    <div class="project-header" style="background-color: #e74c3c;">App</div>
                     <div class="project-info">
                         <h4>Application Vélo'v Lyon</h4>
-                        <p class="tech">Technos : R Shiny, API JCDecaux, Leaflet</p>
-                        <p>Développement d'une application interactive connectée à l'API JCDecaux pour visualiser en temps réel la disponibilité des vélos et stations à Lyon[cite: 878, 882].</p>
+                        <p class="tech">Outils : R Shiny, API JCDecaux</p>
+                        <p>Application interactive connectée à l'API JCDecaux pour visualiser en temps réel la disponibilité des vélos à Lyon.</p>
                     </div>
                 </div>
                 <div class="project-card">
+                    <div class="project-header" style="background-color: #3498db;">Stat</div>
                     <div class="project-info">
                         <h4>Prévision Prix Agricoles</h4>
-                        <p class="tech">Technos : R, Séries Temporelles</p>
-                        <p>Analyse et prévision de données temporelles pour estimer les variations des coûts de production agricole (Modèles décomposition, tendances)[cite: 1021].</p>
+                        <p class="tech">Outils : R, Séries Temporelles</p>
+                        <p>Modélisation statistique et prévision des coûts de production agricole (Décomposition, Tendance, Saisonnalité).</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer id="contact">
-        <div class="container">
-            <h3>Me contacter</h3>
-            <div class="social-links">
-                <a href="mailto:votre.email@cnam.fr"><i class="fa-solid fa-envelope"></i> Email</a>
-                <a href="https://www.linkedin.com/in/votre-profil" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-                <a href="https://github.com/votre-pseudo" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
-            </div>
-            <p>&copy; 2025 Arsène Gaby MBABEH MEYE</p>
-        </div>
-    </footer>
+    <script>
+        // 1. Fonction pour changer d'onglet
+        function showSection(sectionId) {
+            // Cacher toutes les sections
+            const sections = document.querySelectorAll('.tab-content');
+            sections.forEach(sec => sec.style.display = 'none');
+
+            // Enlever la classe 'active' de tous les liens du menu
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => link.classList.remove('active')); // Optionnel pour le style
+
+            // Afficher la section demandée
+            const activeSection = document.getElementById(sectionId);
+            if(activeSection) {
+                activeSection.style.display = 'block';
+                // Animation simple (Fade in)
+                activeSection.style.opacity = 0;
+                setTimeout(() => activeSection.style.opacity = 1, 50);
+            }
+        }
+
+        // 2. Configuration du Graphique (Chart.js)
+        const ctx = document.getElementById('skillsChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar', // Type de graphique : 'bar', 'radar', 'line', etc.
+            data: {
+                labels: ['SQL / Bases de données', 'Power BI / Dataviz', 'Python', 'R / Shiny', 'Statistiques', 'ETL (Pentaho)'],
+                datasets: [{
+                    label: 'Niveau de maîtrise (sur 10)',
+                    data: [9, 9, 7, 8, 8, 7], // TES SCORES ICI (Modifie les chiffres selon ton ressenti)
+                    backgroundColor: [
+                        'rgba(52, 152, 219, 0.7)', // Bleu
+                        'rgba(241, 196, 15, 0.7)', // Jaune
+                        'rgba(46, 204, 113, 0.7)', // Vert
+                        'rgba(155, 89, 182, 0.7)', // Violet
+                        'rgba(231, 76, 60, 0.7)',  // Rouge
+                        'rgba(52, 73, 94, 0.7)'    // Gris
+                    ],
+                    borderColor: [
+                        'rgba(52, 152, 219, 1)',
+                        'rgba(241, 196, 15, 1)',
+                        'rgba(46, 204, 113, 1)',
+                        'rgba(155, 89, 182, 1)',
+                        'rgba(231, 76, 60, 1)',
+                        'rgba(52, 73, 94, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 10
+                    }
+                }
+            }
+        });
+    </script>
 
 </body>
 </html>
