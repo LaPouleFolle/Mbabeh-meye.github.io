@@ -5,328 +5,142 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - Arsène Gaby MBABEH MEYE</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-    <div class="background-animation"></div>
-
-    <nav class="navbar glass">
-        <div class="logo">Arsène<span>.Data</span></div>
+    <nav class="navbar">
+        <div class="logo">Arsène MBABEH MEYE</div>
         <ul class="nav-links">
-            <li><a href="#" onclick="showSection('home')" class="active-link" data-target="home">Accueil</a></li>
-            <li><a href="#" onclick="showSection('about')" data-target="about">À propos</a></li>
-            <li><a href="#" onclick="showSection('skills')" data-target="skills">Compétences</a></li>
-            <li><a href="#" onclick="showSection('experience')" data-target="experience">Parcours</a></li>
-            <li><a href="#" onclick="showSection('projects')" data-target="projects">Projets</a></li>
+            <li><a href="#about">À propos</a></li>
+            <li><a href="#skills">Compétences</a></li>
+            <li><a href="#experience">Expérience</a></li>
+            <li><a href="#projects">Projets</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
-        <div class="burger" onclick="toggleMenu()">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
-        </div>
     </nav>
 
-    <section id="home" class="tab-content active-tab">
+    <header class="hero">
         <div class="hero-content">
-            <div class="photo-wrapper">
-                <img src="photo.jpg" alt="Arsène" class="profile-photo" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png'">
-            </div>
-            <h1>Arsène Gaby MBABEH MEYE</h1>
-            <h2 class="typing-text">Je suis <span class="txt-type" data-wait="2000" data-words='["Data Analyst", "Apprenti chez UTAC", "Étudiant Master Médas CNAM"]'></span></h2>
-            <p>Transformer la donnée brute en intelligence stratégique.</p>
-            
-            <div class="social-icons">
-                <a href="https://www.linkedin.com/in/votre-profil" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/votre-pseudo" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="mailto:votre.email@cnam.fr"><i class="fas fa-envelope"></i></a>
-            </div>
-            
-            <div class="cta-group">
-                <button onclick="showSection('projects')" class="btn-primary">Voir mes projets <i class="fas fa-arrow-right"></i></button>
-                <a href="votre_cv.pdf" class="btn-secondary" download>Mon CV <i class="fas fa-download"></i></a>
-            </div>
+            <h1>Data Analyst</h1>
+            <h2>Alternant chez UTAC & Master Médas (CNAM Paris)</h2>
+            <p>Je transforme les données brutes en leviers décisionnels grâce à la statistique et la Business Intelligence.</p>
+            <a href="#projects" class="btn">Voir mes projets</a>
+            <a href="votre_cv.pdf" class="btn btn-outline" download>Télécharger mon CV</a>
+        </div>
+    </header>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h3>À propos de moi</h3>
+            <p>
+                Actuellement étudiant en <strong>Master Médas</strong> (Médiation des savoirs et Nouvelles Générations) au CNAM de Paris [cite: 1896] 
+                et <strong>apprenti Data Analyst chez UTAC</strong>, je me spécialise dans le traitement et la valorisation de la donnée.
+            </p>
+            <p>
+                Diplômé du BUT Science des Données (Parcours EMS), j'ai acquis une solide expérience technique, notamment lors de mes missions 
+                au sein du <strong>SYDESL</strong>[cite: 661], où j'ai pu travailler sur l'intégralité de la chaîne de valeur de la donnée : 
+                de l'extraction SQL à la dataviz.
+            </p>
         </div>
     </section>
 
-    <section id="about" class="tab-content">
-        <div class="container glass-panel">
-            <h3 class="section-title">Qui suis-je ?</h3>
-            <div class="about-grid">
-                <div class="about-bio">
-                    <p>
-                        👋 Bonjour ! Passionné par la data, je navigue entre technique et stratégie.
-                    </p>
-                    <p>
-                        Après un <strong>BUT Science des Données</strong> solide, je poursuis mon ascension avec un <strong>Master Médas au CNAM Paris</strong>.
-                        Actuellement <strong>Data Analyst en alternance chez UTAC</strong>, je mets mes compétences au service du secteur automobile et réglementaire.
-                    </p>
-                    <p>
-                        Mon objectif ? Faire parler les chiffres pour guider la prise de décision.
-                    </p>
+    <section id="skills" class="section bg-light">
+        <div class="container">
+            <h3>Compétences Techniques</h3>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <i class="fa-solid fa-database"></i>
+                    <h4>Data & BDD</h4>
+                    <p>SQL (Oracle), Modélisation (Looping) [cite: 689], ETL (Pentaho) </p>
                 </div>
-                <div class="about-cards">
-                    <div class="card-mini">
-                        <i class="fas fa-brain"></i>
-                        <h4>Analytique</h4>
-                        <p>Esprit de synthèse</p>
-                    </div>
-                    <div class="card-mini">
-                        <i class="fas fa-rocket"></i>
-                        <h4>Proactif</h4>
-                        <p>Force de proposition</p>
-                    </div>
-                    <div class="card-mini">
-                        <i class="fas fa-users"></i>
-                        <h4>Communication</h4>
-                        <p>Vulgarisation Data</p>
-                    </div>
-                    <div class="card-mini">
-                        <i class="fas fa-search"></i>
-                        <h4>Curieux</h4>
-                        <p>Veille technologique</p>
-                    </div>
+                <div class="skill-card">
+                    <i class="fa-solid fa-code"></i>
+                    <h4>Programmation</h4>
+                    <p>Python, R (Shiny, Tidyverse) [cite: 878], VBA [cite: 331]</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <h4>Visualisation & BI</h4>
+                    <p>Power BI [cite: 1129], Tableau Software[cite: 498], Reporting décisionnel</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fa-solid fa-brain"></i>
+                    <h4>Statistiques</h4>
+                    <p>Séries temporelles [cite: 1021], Régression, ACP[cite: 1053], Analyse de variance</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="skills" class="tab-content">
-        <div class="container glass-panel">
-            <h3 class="section-title">Arsenal Technique</h3>
-            
-            <div class="skills-layout">
-                <div class="chart-box">
-                    <canvas id="skillsChart"></canvas>
-                </div>
-                <div class="skills-list">
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span>SQL / Oracle</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="progress-bar"><div class="progress" style="width: 90%"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span>Power BI / DAX</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="progress-bar"><div class="progress" style="width: 85%"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span>Python / Pandas</span>
-                            <span>75%</span>
-                        </div>
-                        <div class="progress-bar"><div class="progress" style="width: 75%"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span>R / Shiny</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="progress-bar"><div class="progress" style="width: 80%"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span>ETL (Pentaho)</span>
-                            <span>70%</span>
-                        </div>
-                        <div class="progress-bar"><div class="progress" style="width: 70%"></div></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="experience" class="tab-content">
-        <div class="container glass-panel">
-            <h3 class="section-title">Mon Parcours</h3>
+    <section id="experience" class="section">
+        <div class="container">
+            <h3>Parcours Professionnel</h3>
             <div class="timeline">
-                <div class="timeline-item left">
-                    <div class="content">
-                        <div class="date">2024 - Présent</div>
-                        <h2>Apprenti Data Analyst</h2>
-                        <span class="place">UTAC - Paris</span>
-                        <p>Analyse de données, automatisation de reporting et support aux équipes métiers dans un contexte international.</p>
+                <div class="timeline-item">
+                    <div class="timeline-date">2024 - Présent</div>
+                    <div class="timeline-content">
+                        <h4>Apprenti Data Analyst</h4>
+                        <span class="company">UTAC - Paris</span>
+                        <p>Analyse de données et support décisionnel dans le secteur automobile/réglementaire.</p>
                     </div>
                 </div>
-                <div class="timeline-item right">
-                    <div class="content">
-                        <div class="date">2024 - Présent</div>
-                        <h2>Master Médas</h2>
-                        <span class="place">CNAM - Paris</span>
-                        <p>Master Médiation des savoirs et Nouvelles Générations. Spécialisation Data & Digital.</p>
-                    </div>
-                </div>
-                <div class="timeline-item left">
-                    <div class="content">
-                        <div class="date">2023 - 2024</div>
-                        <h2>Alternant Chargé d'Études</h2>
-                        <span class="place">SYDESL - Mâcon</span>
-                        <p>Création Data Warehouse, Scripts SQL complexes, Tableaux de bord Power BI (1100+ dossiers gérés).</p>
-                    </div>
-                </div>
-                <div class="timeline-item right">
-                    <div class="content">
-                        <div class="date">2021 - 2024</div>
-                        <h2>BUT Science des Données</h2>
-                        <span class="place">IUT Lumière Lyon II</span>
-                        <p>Parcours Exploration et Modélisation Statistique (EMS). Projets R Shiny, Big Data et Statistiques.</p>
+                <div class="timeline-item">
+                    <div class="timeline-date">2023 - 2024</div>
+                    <div class="timeline-content">
+                        <h4>Chargé d'Études Statistiques (Alternance)</h4>
+                        <span class="company">SYDESL - Mâcon</span>
+                        <p>
+                            • Création d'un Data Warehouse et modélisation des données d'éclairage public[cite: 689].<br>
+                            • Développement de scripts SQL pour le calcul de pénalités de retard[cite: 60].<br>
+                            • Conception de tableaux de bord Power BI pour le suivi des prestataires[cite: 1129].
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="projects" class="tab-content">
-        <div class="container glass-panel">
-            <h3 class="section-title">Mes Réalisations</h3>
+    <section id="projects" class="section bg-light">
+        <div class="container">
+            <h3>Projets Réalisés</h3>
             <div class="projects-grid">
                 <div class="project-card">
-                    <div class="card-image" style="background: linear-gradient(45deg, #f1c40f, #f39c12);">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="card-content">
+                    <div class="project-info">
                         <h4>Dashboard SYDESL</h4>
-                        <div class="tags">
-                            <span class="tag">Power BI</span>
-                            <span class="tag">SQL</span>
-                        </div>
-                        <p>Pilotage de 727k€ de budget maintenance. Analyse des délais prestataires et KPI décisionnels.</p>
+                        <p class="tech">Technos : Power BI, SQL, Looping</p>
+                        <p>Mise en place d'un outil décisionnel pour suivre 1104 dossiers de maintenance et analyser 727k€ de budget[cite: 1129]. Optimisation du suivi des délais d'intervention des entreprises.</p>
                     </div>
                 </div>
                 <div class="project-card">
-                    <div class="card-image" style="background: linear-gradient(45deg, #e74c3c, #c0392b);">
-                        <i class="fas fa-bicycle"></i>
-                    </div>
-                    <div class="card-content">
-                        <h4>App Vélo'v Lyon</h4>
-                        <div class="tags">
-                            <span class="tag">R Shiny</span>
-                            <span class="tag">API</span>
-                        </div>
-                        <p>Application temps réel connectée à l'API JCDecaux. Géolocalisation et disponibilité des vélos.</p>
+                    <div class="project-info">
+                        <h4>Application Vélo'v Lyon</h4>
+                        <p class="tech">Technos : R Shiny, API JCDecaux, Leaflet</p>
+                        <p>Développement d'une application interactive connectée à l'API JCDecaux pour visualiser en temps réel la disponibilité des vélos et stations à Lyon[cite: 878, 882].</p>
                     </div>
                 </div>
                 <div class="project-card">
-                    <div class="card-image" style="background: linear-gradient(45deg, #3498db, #2980b9);">
-                        <i class="fas fa-wheat"></i>
-                    </div>
-                    <div class="card-content">
-                        <h4>Prévision Agricole</h4>
-                        <div class="tags">
-                            <span class="tag">R</span>
-                            <span class="tag">Séries Temporelles</span>
-                        </div>
-                        <p>Modélisation statistique avancée pour prédire les variations des coûts de production.</p>
+                    <div class="project-info">
+                        <h4>Prévision Prix Agricoles</h4>
+                        <p class="tech">Technos : R, Séries Temporelles</p>
+                        <p>Analyse et prévision de données temporelles pour estimer les variations des coûts de production agricole (Modèles décomposition, tendances)[cite: 1021].</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <script>
-        // 1. Navigation
-        function showSection(sectionId) {
-            document.querySelectorAll('.tab-content').forEach(sec => {
-                sec.style.display = 'none';
-                sec.classList.remove('active-animation');
-            });
-            
-            const activeSection = document.getElementById(sectionId);
-            activeSection.style.display = 'flex'; // Utilise flex pour centrer le contenu
-            if(sectionId !== 'home') activeSection.style.display = 'block'; // Block pour les autres contenus
-            
-            // Petit délai pour l'animation
-            setTimeout(() => activeSection.classList.add('active-animation'), 10);
+    <footer id="contact">
+        <div class="container">
+            <h3>Me contacter</h3>
+            <div class="social-links">
+                <a href="mailto:votre.email@cnam.fr"><i class="fa-solid fa-envelope"></i> Email</a>
+                <a href="https://www.linkedin.com/in/votre-profil" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                <a href="https://github.com/votre-pseudo" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+            </div>
+            <p>&copy; 2025 Arsène Gaby MBABEH MEYE</p>
+        </div>
+    </footer>
 
-            // Menu actif
-            document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active-link'));
-            document.querySelector(`[data-target="${sectionId}"]`).classList.add('active-link');
-        }
-
-        // 2. Typewriter Effect (Machine à écrire)
-        class TypeWriter {
-            constructor(txtElement, words, wait = 3000) {
-                this.txtElement = txtElement;
-                this.words = words;
-                this.txt = '';
-                this.wordIndex = 0;
-                this.wait = parseInt(wait, 10);
-                this.type();
-                this.isDeleting = false;
-            }
-
-            type() {
-                const current = this.wordIndex % this.words.length;
-                const fullTxt = this.words[current];
-
-                if(this.isDeleting) {
-                    this.txt = fullTxt.substring(0, this.txt.length - 1);
-                } else {
-                    this.txt = fullTxt.substring(0, this.txt.length + 1);
-                }
-
-                this.txtElement.innerHTML = `<span class="txt">${this.txt}</span>`;
-
-                let typeSpeed = 100;
-                if(this.isDeleting) typeSpeed /= 2;
-
-                if(!this.isDeleting && this.txt === fullTxt) {
-                    typeSpeed = this.wait;
-                    this.isDeleting = true;
-                } else if(this.isDeleting && this.txt === '') {
-                    this.isDeleting = false;
-                    this.wordIndex++;
-                    typeSpeed = 500;
-                }
-
-                setTimeout(() => this.type(), typeSpeed);
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', init);
-        function init() {
-            const txtElement = document.querySelector('.txt-type');
-            const words = JSON.parse(txtElement.getAttribute('data-words'));
-            const wait = txtElement.getAttribute('data-wait');
-            new TypeWriter(txtElement, words, wait);
-        }
-
-        // 3. Graphique Chart.js
-        const ctx = document.getElementById('skillsChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'radar',
-            data: {
-                labels: ['SQL', 'Power BI', 'Python', 'R', 'Statistiques', 'ETL'],
-                datasets: [{
-                    label: 'Niveau de maîtrise',
-                    data: [9, 8.5, 7.5, 8, 8, 7],
-                    backgroundColor: 'rgba(52, 152, 219, 0.2)',
-                    borderColor: 'rgba(52, 152, 219, 1)',
-                    borderWidth: 2,
-                    pointBackgroundColor: '#fff'
-                }]
-            },
-            options: {
-                scales: {
-                    r: {
-                        angleLines: { color: 'rgba(255, 255, 255, 0.2)' },
-                        grid: { color: 'rgba(255, 255, 255, 0.2)' },
-                        pointLabels: { color: 'white', font: {size: 14} },
-                        suggestedMin: 0,
-                        suggestedMax: 10
-                    }
-                },
-                plugins: {
-                    legend: { display: false }
-                }
-            }
-        });
-    </script>
 </body>
 </html>
