@@ -3,825 +3,475 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Data Analyst | Statistiques & BI</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <title>Révision Assurance 2026 - Master Class</title>
     <style>
-        /* --- VARIABLES CSS & RESET --- */
         :root {
-            --primary: #1e293b;      /* Bleu profond (Slate 800) */
-            --secondary: #334155;    /* Bleu gris (Slate 700) */
-            --accent: #6366f1;       /* Violet Data (Indigo 500) */
-            --accent-hover: #4f46e5;
-            --bg-light: #f8fafc;     /* Fond très clair (Slate 50) */
-            --white: #ffffff;
-            --text-dark: #0f172a;
-            --text-light: #94a3b8;
-            --success: #10b981;      /* Vert pour les KPI positifs */
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --card-radius: 12px;
+            --primary: #2c3e50;    /* Bleu nuit */
+            --secondary: #2980b9;  /* Bleu clair */
+            --accent: #e67e22;     /* Orange */
+            --success: #27ae60;    /* Vert */
+            --bg: #ecf0f1;         /* Gris très clair */
+            --text: #2c3e50;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            overflow-x: hidden;
-            line-height: 1.6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
+        h1 { margin-bottom: 20px; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; }
 
         /* --- NAVIGATION --- */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid #e2e8f0;
-            z-index: 1000;
-            padding: 1rem 5%;
+        .tabs {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+            background: white;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 5px;
+            margin-bottom: 30px;
+            max-width: 95%;
         }
-
-        .logo {
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .logo i { color: var(--accent); }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-
-        .nav-btn {
-            background: none;
+        .tab-btn {
+            padding: 12px 20px;
             border: none;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 500;
-            color: var(--secondary);
+            background: transparent;
             cursor: pointer;
-            font-size: 1rem;
-            position: relative;
-            transition: color 0.3s ease;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text);
+            border-radius: 40px;
+            transition: all 0.3s;
+            margin: 2px;
+        }
+        .tab-btn:hover { background: #f0f3f4; }
+        .tab-btn.active {
+            background: var(--secondary);
+            color: white;
+            box-shadow: 0 2px 10px rgba(41, 128, 185, 0.3);
         }
 
-        .nav-btn:hover, .nav-btn.active {
-            color: var(--accent);
-        }
-
-        .nav-btn::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        .nav-btn.active::after {
-            width: 100%;
-        }
-
-        /* Menu Burger Mobile */
-        .burger { display: none; cursor: pointer; font-size: 1.5rem; color: var(--primary); }
-
-        /* --- CONTAINER PRINCIPAL --- */
-        main {
-            padding-top: 80px; /* Espace pour la nav fixe */
-            min-height: 100vh;
-        }
-
-        /* Gestion des onglets */
+        /* --- CONTENU --- */
         .tab-content {
             display: none;
-            animation: fadeIn 0.5s ease-in-out;
-            padding: 2rem 5%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- SECTION 1: HOME (ACCUEIL) --- */
-        #home.tab-content {
-            display: none; /* Géré par JS, mais flexbox spécifiquement */
-            min-height: calc(100vh - 80px);
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-        
-        #home.tab-content.active {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .hero-img {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--accent);
-            padding: 5px;
-            margin-bottom: 2rem;
-            background-color: var(--white);
-            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-            color: var(--secondary);
-            margin-bottom: 2.5rem;
-            font-family: 'Roboto Mono', monospace;
-            background: #e0e7ff;
-            color: var(--accent);
-            padding: 5px 15px;
-            border-radius: 5px;
-            display: inline-block;
-        }
-
-        .hero-text {
-            max-width: 600px;
-            margin: 0 auto 2.5rem;
-            color: var(--secondary);
-        }
-
-        .btn-cta {
-            padding: 12px 30px;
-            background-color: var(--accent);
-            color: var(--white);
-            border: none;
-            border-radius: 30px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .btn-cta:hover {
-            background-color: var(--accent-hover);
-            transform: translateY(-2px);
-        }
-
-        /* --- SECTION 2: PRÉSENTATION --- */
-        .section-header {
-            margin-bottom: 3rem;
-            border-left: 5px solid var(--accent);
-            padding-left: 15px;
-        }
-
-        .section-header h2 {
-            font-size: 2rem;
-            color: var(--primary);
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .about-text p { margin-bottom: 1rem; }
-
-        .kpi-card-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-
-        .kpi-card {
-            background: var(--white);
-            padding: 20px;
-            border-radius: var(--card-radius);
-            box-shadow: var(--shadow);
-            border-left: 4px solid var(--accent);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .kpi-icon {
-            font-size: 1.5rem;
-            color: var(--accent);
-            background: #e0e7ff;
-            padding: 10px;
-            border-radius: 8px;
-        }
-
-        /* --- SECTION 3: COMPÉTENCES --- */
-        .skills-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .skill-category {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: var(--card-radius);
-            box-shadow: var(--shadow);
-        }
-
-        .skill-category h3 {
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--primary);
-        }
-
-        .skill-bar {
-            margin-bottom: 1.2rem;
-        }
-
-        .skill-info {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 5px;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .progress-bg {
-            background: #e2e8f0;
-            height: 8px;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: var(--accent);
-            border-radius: 4px;
-            width: 0; /* Animé par JS */
-            transition: width 1s ease-out;
-        }
-
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .tag {
-            background: #f1f5f9;
-            color: var(--secondary);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        /* --- SECTION 4: PROJETS --- */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .project-card {
-            background: var(--white);
-            border-radius: var(--card-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .project-img {
-            height: 160px;
-            background-color: var(--secondary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 3rem;
-        }
-
-        .project-body {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-        }
-
-        .project-desc {
-            font-size: 0.9rem;
-            color: var(--secondary);
-            margin-bottom: 1rem;
-            flex-grow: 1;
-        }
-
-        .project-tech {
-            margin-bottom: 1rem;
-            display: flex;
-            gap: 5px;
-            flex-wrap: wrap;
-        }
-
-        .btn-sm {
-            padding: 8px 16px;
-            background-color: transparent;
-            border: 1px solid var(--accent);
-            color: var(--accent);
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 0.85rem;
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .btn-sm:hover {
-            background-color: var(--accent);
-            color: var(--white);
-        }
-
-        /* --- SECTION 5: EXPÉRIENCES --- */
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 2px;
-            background: #e2e8f0;
-            top: 0;
-            bottom: 0;
-            left: 20px;
-            margin-left: -1px;
-        }
-
-        .timeline-item {
-            padding: 10px 40px;
-            position: relative;
-            background-color: inherit;
             width: 100%;
-            margin-bottom: 2rem;
+            max-width: 1100px;
+            animation: slideIn 0.4s ease-out;
+            padding-bottom: 50px;
         }
+        .tab-content.active { display: block; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            left: 12px;
-            background-color: var(--white);
-            border: 4px solid var(--accent);
-            top: 15px;
-            border-radius: 50%;
-            z-index: 1;
+        /* --- CARTE MENTALE --- */
+        .mindmap-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
         }
-
-        .timeline-content {
-            padding: 20px 30px;
-            background-color: var(--white);
-            position: relative;
-            border-radius: var(--card-radius);
-            box-shadow: var(--shadow);
+        .mindmap ul { list-style-type: none; padding-left: 20px; border-left: 2px solid #bdc3c7; }
+        .mindmap > ul { border-left: none; padding-left: 0; }
+        .mindmap li { margin: 15px 0; position: relative; }
+        .mindmap li::before {
+            content: ''; position: absolute; top: 15px; left: -20px;
+            width: 20px; height: 2px; background: #bdc3c7;
         }
+        .mindmap > ul > li::before { display: none; } 
 
-        .timeline-date {
-            font-size: 0.85rem;
-            color: var(--accent);
-            font-weight: 700;
-            margin-bottom: 5px;
-            display: block;
-        }
-
-        .timeline-role {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .timeline-company {
-            font-weight: 500;
-            color: var(--secondary);
-            margin-bottom: 10px;
-        }
-
-        /* --- SECTION 6: CERTIFICATIONS --- */
-        .cert-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .cert-card {
-            background: var(--white);
-            padding: 1.5rem;
-            border-radius: var(--card-radius);
-            box-shadow: var(--shadow);
-            text-align: center;
-            border-top: 4px solid var(--success);
-        }
-
-        .cert-icon {
-            font-size: 2rem;
-            color: var(--success);
-            margin-bottom: 1rem;
-        }
-
-        /* --- SECTION 7: CONTACT --- */
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            background: var(--white);
-            padding: 3rem;
-            border-radius: var(--card-radius);
-            box-shadow: var(--shadow);
-        }
-
-        .contact-info h3 { margin-bottom: 1rem; color: var(--primary); }
-        .contact-item { margin-bottom: 1rem; display: flex; items-center; gap: 10px; color: var(--secondary); }
-        .contact-item i { color: var(--accent); }
-
-        .social-links { margin-top: 2rem; display: flex; gap: 15px; }
-        .social-btn {
-            width: 40px;
-            height: 40px;
-            background: #f1f5f9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            color: var(--primary);
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-        .social-btn:hover { background: var(--accent); color: var(--white); }
-
-        form { display: flex; flex-direction: column; gap: 15px; }
-        input, textarea {
-            padding: 12px;
-            border: 1px solid #e2e8f0;
+        .node {
+            display: inline-block;
+            padding: 8px 15px;
             border-radius: 8px;
-            font-family: inherit;
+            background: white;
+            border: 1px solid #bdc3c7;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+            position: relative;
+            z-index: 2;
         }
-        input:focus, textarea:focus { outline: 2px solid var(--accent); border-color: transparent; }
+        .node:hover { transform: translateX(5px); border-color: var(--secondary); box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .node.root { background: var(--primary); color: white; font-size: 1.2em; font-weight: bold; border: none; }
+        .node.level-1 { background: var(--secondary); color: white; border: none; }
+        .node.level-2 { background: #d6eaf8; color: var(--primary); border-left: 4px solid var(--secondary); }
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none; /* À remplacer par un menu JS si besoin complet */
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background: white;
-                flex-direction: column;
-                padding: 20px;
-                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            }
-            
-            .nav-links.active { display: flex; }
-            .burger { display: block; }
-
-            .about-grid, .contact-container { grid-template-columns: 1fr; }
-            .hero-title { font-size: 2.5rem; }
+        .details {
+            display: none;
+            margin-top: 10px;
+            margin-left: 10px;
+            padding: 15px;
+            background: #fff9e6;
+            border-left: 4px solid #f1c40f;
+            border-radius: 0 5px 5px 0;
+            font-size: 0.95em;
+            line-height: 1.6;
+            color: #444;
         }
+        .details.show { display: block; }
+
+        /* --- ÉTUDE DE CAS & DISSERTATION --- */
+        .case-study, .dissertation-container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        .scenario-box {
+            background: #e8f6f3;
+            border-left: 5px solid var(--success);
+            padding: 20px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        .question-box { margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
+        
+        .reveal-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .answer-box {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background: #fdf2e9;
+            border-left: 4px solid var(--accent);
+            border-radius: 4px;
+        }
+        .methodo { font-weight: bold; color: var(--accent); text-transform: uppercase; font-size: 0.8em; margin-bottom: 5px; display: block; }
+
+        /* --- ZONE DE TEXTE DISSERTATION --- */
+        textarea {
+            width: 100%;
+            height: 200px;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 14px;
+            resize: vertical;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+        textarea:focus {
+            border-color: var(--secondary);
+            outline: none;
+            box-shadow: 0 0 10px rgba(41, 128, 185, 0.2);
+        }
+
+        /* --- QUIZ --- */
+        .quiz-option {
+            display: block; padding: 10px; margin: 5px 0;
+            background: #f8f9fa; border-radius: 5px; cursor: pointer; border: 1px solid #eee;
+        }
+        .quiz-option:hover { background: #e9ecef; }
+        .result { font-weight: bold; margin-top: 5px; display: none; }
+        .result.correct { color: var(--success); }
+        .result.wrong { color: #c0392b; }
+
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">
-            <i class="fa-solid fa-chart-pie"></i> DataPortfolio
-        </div>
-        <ul class="nav-links" id="navLinks">
-            <li><button class="nav-btn active" onclick="openTab('home')">Accueil</button></li>
-            <li><button class="nav-btn" onclick="openTab('about')">Présentation</button></li>
-            <li><button class="nav-btn" onclick="openTab('skills')">Compétences</button></li>
-            <li><button class="nav-btn" onclick="openTab('projects')">Projets</button></li>
-            <li><button class="nav-btn" onclick="openTab('experience')">Expériences</button></li>
-            <li><button class="nav-btn" onclick="openTab('certifications')">Certifs</button></li>
-            <li><button class="nav-btn" onclick="openTab('contact')">Contact</button></li>
+    <h1>🎓 Master Révision Assurance</h1>
+
+    <div class="tabs">
+        <button class="tab-btn active" onclick="openTab('chap13')">📘 Droit (Ch.13)</button>
+        <button class="tab-btn" onclick="openTab('chap18')">📈 Stratégie (Ch.18)</button>
+        <button class="tab-btn" onclick="openTab('cas')">💼 Cas Rapide</button>
+        <button class="tab-btn" onclick="openTab('dissertation')">✍️ Dissertation</button>
+        <button class="tab-btn" onclick="openTab('quiz')">📝 Quiz</button>
+    </div>
+
+    <div id="chap13" class="tab-content mindmap-container mindmap active">
+        <h2>Chapitre 13 : Le Droit du Travail</h2>
+        <ul>
+            <li>
+                <span class="node root" onclick="toggle(this)">1. Le Contrat de Travail</span>
+                <div class="details">
+                    [cite_start]<strong>Définition :</strong> Convention où une personne travaille pour une autre, sous sa subordination, contre rémunération[cite: 7].<br>
+                    <strong>3 Critères (Cumulatifs) :</strong>
+                    <br>1. Prestation de travail.
+                    <br>2. Rémunération.
+                    <br>3. [cite_start]<strong>Lien de subordination</strong> (Le critère décisif)[cite: 7].
+                </div>
+                <ul>
+                    <li>
+                        <span class="node level-1" onclick="toggle(this)">Le Lien de Subordination</span>
+                        <div class="details">
+                            C'est l'autorité de l'employeur. [cite_start]Il se manifeste par <strong>3 Pouvoirs</strong> [cite: 63-66] :
+                            <br>🔹 <strong>Direction :</strong> Donner des ordres et directives.
+                            <br>🔹 <strong>Contrôle :</strong> Vérifier l'exécution du travail.
+                            <br>🔹 <strong>Disciplinaire :</strong> Sanctionner les manquements.
+                        </div>
+                    </li>
+                    <li>
+                        <span class="node level-1" onclick="toggle(this)">La Période d'Essai</span>
+                        <div class="details">
+                            <strong>Durées Max (CDI) :</strong>
+                            <br>• Ouvriers/Employés : 2 mois.
+                            <br>• Techniciens : 3 mois.
+                            [cite_start]<br>• Cadres : 4 mois [cite: 13-15].<br>
+                            [cite_start]<strong>Rupture :</strong> Libre (sans motif), mais <strong>Délai de prévenance</strong> obligatoire (ex: 48h entre 8j et 1 mois) [cite: 20-22].
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <span class="node root" onclick="toggle(this)">2. Les Types de Contrats</span>
+                <ul>
+                    <li>
+                        <span class="node level-1" onclick="toggle(this)">CDI vs CDD</span>
+                        <div class="details">
+                            [cite_start]<strong>CDI :</strong> Forme "normale et générale"[cite: 9].<br>
+                            [cite_start]<strong>CDD :</strong> Exception, pour tâche précise et temporaire[cite: 10].
+                            [cite_start]<br>✅ Motifs valables : Remplacement, Accroissement d'activité, Saisonnier[cite: 89, 107, 109].
+                        </div>
+                    </li>
+                    <li>
+                        <span class="node level-1" onclick="toggle(this)">🆕 Nouveauté 2026 : CDD Reconversion</span>
+                        <div class="details">
+                            [cite_start]<strong>Objectif :</strong> Faciliter les transitions pro[cite: 128].
+                            <br><strong>Mécanisme :</strong> Le CDI initial est <em>suspendu</em> (pas rompu). [cite_start]Le salarié teste un nouveau métier (6 à 12 mois)[cite: 137, 144].
+                            [cite_start]<br><strong>Sécurité :</strong> Si échec, retour au poste initial garanti[cite: 146].
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <span class="node root" onclick="toggle(this)">3. Rupture & Collectif</span>
+                <ul>
+                    <li>
+                        <span class="node level-1" onclick="toggle(this)">Rupture du CDI</span>
+                        <div class="details">
+                            [cite_start]<strong>Démission :</strong> Volonté claire du salarié[cite: 171].
+                            [cite_start]<br><strong>Licenciement :</strong> Doit avoir une <strong>Cause Réelle et Sérieuse (CRS)</strong> (Personnelle ou Économique)[cite: 178].
+                            [cite_start]<br><strong>Rupture Conventionnelle :</strong> Commun accord + Indemnités + Chômage[cite: 184].
+                        </div>
+                    </li>
+                    <li>
+                        <span class="node level-1" onclick="toggle(this)">Relations Collectives</span>
+                        <div class="details">
+                            [cite_start]<strong>CSE (Comité Social et Économique) :</strong> Obligatoire dès 11 salariés[cite: 238].
+                            <br><strong>NAO :</strong> Négociation annuelle sur les salaires. [cite_start]Ex: Augmentation 2.3% chez AXA en 2026[cite: 36].
+                        </div>
+                    </li>
+                </ul>
+            </li>
         </ul>
-        <div class="burger" onclick="toggleMenu()">
-            <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <div id="chap18" class="tab-content mindmap-container mindmap">
+        <h2>Chapitre 18 : Stratégie & Organisation</h2>
+        <ul>
+            <li>
+                <span class="node root" onclick="toggle(this)">1. Fondements Stratégiques</span>
+                <ul>
+                    <li>
+                        <span class="node level-1" onclick="toggle(this)">Les 3 Stratégies de Porter</span>
+                        <div class="details">
+                            <strong>1. [cite_start]Domination par les Coûts :</strong> Produire moins cher (Volume)[cite: 312].
+                            <br><strong>2. [cite_start]Différenciation :</strong> Produit unique/supérieur = Prix élevé (Premium)[cite: 312].
+                            <br><strong>3. [cite_start]Focalisation :</strong> Créneau étroit (Niche)[cite: 312].
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <span class="node root" onclick="toggle(this)">2. Croissance</span>
+                <ul>
+                    <li>
+                        <span class="node level-1" onclick="toggle(this)">Diversification</span>
+                        <div class="details">
+                            [cite_start]Se lancer sur de nouveaux marchés/produits[cite: 316].
+                            [cite_start]<br>Ex: <strong>Matmut</strong> achète HSBC Vie pour faire de l'épargne[cite: 337].
+                            [cite_start]<br>Ex: <strong>CNP</strong> se lance dans la santé chien/chat avec La Poste[cite: 356].
+                        </div>
+                    </li>
+                    <li>
+                        <span class="node level-1" onclick="toggle(this)">Internationalisation</span>
+                        <div class="details">
+                            [cite_start]Ex: <strong>April</strong> vise 50% de son CA hors de France d'ici 8-10 ans[cite: 364].
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <span class="node root" onclick="toggle(this)">3. Innovation & IA</span>
+                <div class="details">
+                    L'IA transforme la chaîne de valeur.
+                </div>
+                <ul>
+                    <li>
+                        <span class="node level-1" onclick="toggle(this)">Les 3 Types d'IA</span>
+                        <div class="details">
+                            [cite_start]<strong>IA Prédictive :</strong> Analyse le passé pour prédire le risque (Tarification)[cite: 505].<br>
+                            [cite_start]<strong>IA Générative :</strong> Aide à la rédaction, chatbots intelligents[cite: 514].<br>
+                            [cite_start]<strong>IA Agentique (Dès 2026) :</strong> Agit de manière <strong>autonome</strong> (ex: gère un sinistre seul)[cite: 526].
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <span class="node root" onclick="toggle(this)">4. Structures Spéciales</span>
+                <ul>
+                    <li>
+                        <span class="node level-1" onclick="toggle(this)">Les Captives</span>
+                        <div class="details">
+                            Entreprise non-assureur qui crée sa propre assurance pour ses risques.
+                            [cite_start]<br>Ex: <strong>Bel Re</strong> (Groupe Bel, Fromagerie) agréée en 2025[cite: 548, 558].
+                        </div>
+                    </li>
+                    <li>
+                        <span class="node level-1" onclick="toggle(this)">LPS (Libre Prestation Services)</span>
+                        <div class="details">
+                            Vendre en Europe sans être installé dans le pays. [cite_start]"Passeport Européen"[cite: 593].
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div id="cas" class="tab-content case-study">
+        <h2>💼 Cas Rapide : Assur'Bike 2026</h2>
+        <div class="scenario-box">
+            <p>La mutuelle "Assur'Bike", spécialisée dans l'assurance moto, lance une offre pour vélos électriques haut de gamme avec capteur GPS. Elle souhaite embaucher Julien, développeur, pour 18 mois pour ce projet.</p>
         </div>
-    </nav>
-
-    <main>
-        <section id="home" class="tab-content active">
-            <img src="https://via.placeholder.com/180x180.png?text=Avatar" alt="Profile" class="hero-img">
-            <div class="hero-subtitle">Apprenti Data Analyst & Scientist</div>
-            <h1 class="hero-title">Transformer la donnée<br>en décisions.</h1>
-            <p class="hero-text">
-                Passionné par les statistiques, la Business Intelligence et le Machine Learning. 
-                J'aide les entreprises à visualiser l'invisible pour optimiser leurs stratégies.
-            </p>
-            <button class="btn-cta" onclick="openTab('projects')">
-                Explorer mes projets <i class="fa-solid fa-arrow-right"></i>
-            </button>
-        </section>
-
-        <section id="about" class="tab-content">
-            <div class="section-header">
-                <h2>À propos de moi</h2>
+        <div class="question-box">
+            <h3>Question 1 : Qualifiez la stratégie.</h3>
+            <button class="reveal-btn" onclick="toggleAnswer('ans1')">Voir correction</button>
+            <div id="ans1" class="answer-box">
+                <span class="methodo">Méthode : Concept + Justification</span>
+                <p><strong>Diversification et Différenciation :</strong> Sortie du marché historique (moto) vers le vélo, avec une offre à valeur ajoutée (GPS) pour justifier un prix premium.</p>
             </div>
-            <div class="about-grid">
-                <div class="about-text">
-                    <p>Bonjour ! Je suis un passionné de données. Actuellement en alternance en tant que Data Analyst, je combine une rigueur statistique avec une curiosité pour les technologies modernes.</p>
-                    <p>Mon objectif est simple : rendre les données complexes accessibles et exploitables pour la prise de décision stratégique. Que ce soit via des dashboards interactifs ou des modèles prédictifs, je m'efforce de créer de la valeur.</p>
-                    <p>En dehors du code, je fais de la veille technologique constante sur l'IA et la Dataviz.</p>
-                </div>
-                <div class="kpi-card-container">
-                    <div class="kpi-card">
-                        <div class="kpi-icon"><i class="fa-solid fa-briefcase"></i></div>
-                        <div>
-                            <strong>Apprenti</strong>
-                            <div style="font-size: 0.9rem; color: #64748b;">Poste actuel</div>
-                        </div>
-                    </div>
-                    <div class="kpi-card">
-                        <div class="kpi-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-                        <div>
-                            <strong>Master Data</strong>
-                            <div style="font-size: 0.9rem; color: #64748b;">En cours</div>
-                        </div>
-                    </div>
-                </div>
+        </div>
+        <div class="question-box">
+            <h3>Question 2 : Quel contrat pour Julien ?</h3>
+            <button class="reveal-btn" onclick="toggleAnswer('ans2')">Voir correction</button>
+            <div id="ans2" class="answer-box">
+                <span class="methodo">Méthode : Syllogisme</span>
+                <p><strong>Droit :</strong> CDD possible pour objet défini ou accroissement d'activité.<br><strong>Application :</strong> CDD à objet défini (ingénieur, 18 à 36 mois) est idéal.</p>
             </div>
-        </section>
+        </div>
+    </div>
 
-        <section id="skills" class="tab-content">
-            <div class="section-header">
-                <h2>Mes Compétences</h2>
-            </div>
-            <div class="skills-container">
-                <div class="skill-category">
-                    <h3><i class="fa-solid fa-chart-simple"></i> BI & DataViz</h3>
-                    <div class="skill-bar">
-                        <div class="skill-info"><span>Power BI</span><span>90%</span></div>
-                        <div class="progress-bg"><div class="progress-fill" style="width: 90%"></div></div>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-info"><span>Tableau</span><span>80%</span></div>
-                        <div class="progress-bg"><div class="progress-fill" style="width: 80%"></div></div>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-info"><span>Matplotlib / Seaborn</span><span>85%</span></div>
-                        <div class="progress-bg"><div class="progress-fill" style="width: 85%"></div></div>
-                    </div>
-                </div>
+    <div id="dissertation" class="tab-content dissertation-container">
+        <h2>✍️ Entraînement à la Dissertation (Nouveau Cas)</h2>
+        
+        <div class="scenario-box">
+            <h3>Le Cas : "Mutuelle Grand-Est" (Conflit Interne)</h3>
+            <p>La "Mutuelle Grand-Est" subit une forte baisse de rentabilité sur ses contrats auto classiques. Pour réagir, la direction décide d'une stratégie de <strong>recentrage sur la relation client</strong> en agence.</p>
+            <p><strong>Le Problème RH :</strong> Sophie est "Gestionnaire Back-Office" (gestion administrative des dossiers sans contact client) depuis 10 ans. Son contrat de travail stipule "Travail administratif au siège".</p>
+            <p>La direction informe Sophie que dès lundi prochain, elle devra travailler à l'accueil de l'agence (contact client direct) pour vendre des contrats. Son salaire ne change pas. Sophie refuse.</p>
+            <p><strong>Votre Mission :</strong> Analysez la situation. L'employeur peut-il imposer ce changement ? Identifiez le problème juridique précis.</p>
+        </div>
 
-                <div class="skill-category">
-                    <h3><i class="fa-solid fa-code"></i> Code & Data</h3>
-                    <div class="skill-bar">
-                        <div class="skill-info"><span>Python (Pandas, Scikit)</span><span>90%</span></div>
-                        <div class="progress-bg"><div class="progress-fill" style="width: 90%"></div></div>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-info"><span>SQL (PostgreSQL, MySQL)</span><span>95%</span></div>
-                        <div class="progress-bg"><div class="progress-fill" style="width: 95%"></div></div>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-info"><span>R</span><span>70%</span></div>
-                        <div class="progress-bg"><div class="progress-fill" style="width: 70%"></div></div>
-                    </div>
-                </div>
+        <div class="question-box">
+            <h3>Votre Réponse :</h3>
+            <p><em>Utilisez le syllogisme juridique (Faits, Droit, Application) et les notions de stratégie.</em></p>
+            <textarea placeholder="Commencez votre analyse ici... (Exemple : Dans un premier temps, il convient de qualifier la stratégie de l'entreprise...)"></textarea>
+            
+            <button class="reveal-btn" style="width:100%; margin-top:20px; font-size:1.1em;" onclick="toggleAnswer('dissert-correction')">Voir la correction type</button>
 
-                <div class="skill-category">
-                    <h3><i class="fa-solid fa-toolbox"></i> Outils & Soft Skills</h3>
-                    <div class="tech-tags">
-                        <span class="tag">Git / GitHub</span>
-                        <span class="tag">Jupyter Notebook</span>
-                        <span class="tag">Docker</span>
-                        <span class="tag">Excel (VBA)</span>
-                        <span class="tag">Communication</span>
-                        <span class="tag">Esprit critique</span>
-                        <span class="tag">Storytelling</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects" class="tab-content">
-            <div class="section-header">
-                <h2>Projets Récents</h2>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-img"><i class="fa-solid fa-shop"></i></div>
-                    <div class="project-body">
-                        <h3 class="project-title">Sales Dashboard</h3>
-                        <p class="project-desc">Analyse des ventes retail via Power BI. Identification des tendances saisonnières et des produits phares.</p>
-                        <div class="project-tech">
-                            <span class="tag">Power BI</span>
-                            <span class="tag">SQL</span>
-                        </div>
-                        <a href="#" class="btn-sm">Voir détails</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-img"><i class="fa-solid fa-brain"></i></div>
-                    <div class="project-body">
-                        <h3 class="project-title">Prédiction Churn</h3>
-                        <p class="project-desc">Modèle de Machine Learning pour prédire le désabonnement client. Random Forest & Régression Logistique.</p>
-                        <div class="project-tech">
-                            <span class="tag">Python</span>
-                            <span class="tag">Scikit-Learn</span>
-                        </div>
-                        <a href="#" class="btn-sm">Voir détails</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-img"><i class="fa-solid fa-globe"></i></div>
-                    <div class="project-body">
-                        <h3 class="project-title">Web Scraping Immo</h3>
-                        <p class="project-desc">Script automatisé pour récupérer les données immobilières et analyser le marché locatif.</p>
-                        <div class="project-tech">
-                            <span class="tag">Python</span>
-                            <span class="tag">Selenium</span>
-                        </div>
-                        <a href="#" class="btn-sm">Voir détails</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="experience" class="tab-content">
-            <div class="section-header">
-                <h2>Mon Parcours</h2>
-            </div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <span class="timeline-date">Sept 2023 - Présent</span>
-                        <h3 class="timeline-role">Apprenti Data Analyst</h3>
-                        <div class="timeline-company">Entreprise X - Paris</div>
-                        <p>Mise en place de pipelines ETL, création de dashboards automatisés pour la direction financière, nettoyage de bases de données CRM.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <span class="timeline-date">Jan 2023 - Juin 2023</span>
-                        <h3 class="timeline-role">Stage Data Science</h3>
-                        <div class="timeline-company">Start-up Y - Lyon</div>
-                        <p>Analyse exploratoire des données utilisateurs, segmentation client (Clustering K-Means), reporting hebdomadaire.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <span class="timeline-date">2020 - 2023</span>
-                        <h3 class="timeline-role">Licence Informatique & Statistique</h3>
-                        <div class="timeline-company">Université Z</div>
-                        <p>Bases solides en algorithmique, probabilités, statistiques inférentielles et bases de données.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="certifications" class="tab-content">
-            <div class="section-header">
-                <h2>Certifications</h2>
-            </div>
-            <div class="cert-grid">
-                <div class="cert-card">
-                    <div class="cert-icon"><i class="fa-brands fa-microsoft"></i></div>
-                    <h3>Microsoft Certified: Power BI Data Analyst</h3>
-                    <p style="font-size: 0.9rem; color: #64748b;">Obtenu en 2023</p>
-                </div>
-                <div class="cert-card">
-                    <div class="cert-icon"><i class="fa-brands fa-google"></i></div>
-                    <h3>Google Data Analytics Professional Certificate</h3>
-                    <p style="font-size: 0.9rem; color: #64748b;">Obtenu en 2022</p>
-                </div>
-                <div class="cert-card">
-                    <div class="cert-icon"><i class="fa-solid fa-code"></i></div>
-                    <h3>SQL Advanced (HackerRank)</h3>
-                    <p style="font-size: 0.9rem; color: #64748b;">Obtenu en 2023</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="tab-content">
-            <div class="section-header">
-                <h2>Me Contacter</h2>
-            </div>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3>Discutons de vos données</h3>
-                    <p style="margin-bottom: 2rem;">Je suis ouvert aux opportunités de collaboration et aux nouveaux challenges. N'hésitez pas à m'envoyer un message.</p>
-                    
-                    <div class="contact-item"><i class="fa-solid fa-envelope"></i> mon.email@example.com</div>
-                    <div class="contact-item"><i class="fa-solid fa-location-dot"></i> Paris, France</div>
-                    <div class="contact-item"><i class="fa-solid fa-phone"></i> +33 6 00 00 00 00</div>
-
-                    <div class="social-links">
-                        <a href="#" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <a href="#" class="social-btn"><i class="fa-brands fa-github"></i></a>
-                        <a href="#" class="social-btn"><i class="fa-brands fa-twitter"></i></a>
-                    </div>
-                </div>
+            <div id="dissert-correction" class="answer-box">
+                <h3>Correction Type (Analyse)</h3>
                 
-                <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Ceci est une démo. Le formulaire ne peut pas envoyer de mail sans backend.');">
-                    <input type="text" placeholder="Votre Nom" required>
-                    <input type="email" placeholder="Votre Email" required>
-                    <textarea rows="5" placeholder="Votre Message" required></textarea>
-                    <button type="submit" class="btn-cta" style="border: none; width: 100%; justify-content: center;">Envoyer</button>
-                </form>
+                <h4>1. Sur le plan Stratégique (Chap 18)</h4>
+                <p>L'entreprise opère un changement organisationnel pour répondre à une baisse de rentabilité. Elle cherche à valoriser ses ressources humaines vers des tâches commerciales (Front Office) pour augmenter le CA. C'est une stratégie d'<strong>optimisation des ressources internes</strong> face à la concurrence.</p>
+
+                <h4>2. Sur le plan Juridique (Chap 13) - Le Cœur du problème</h4>
+                <span class="methodo">Syllogisme Juridique :</span>
+                
+                <p><strong>Les Faits :</strong> L'employeur impose un passage d'un poste administratif (Back-Office) à un poste commercial (Front-Office) sans l'accord de la salariée.</p>
+                
+                <p><strong>La Règle de Droit (Majeure) :</strong> 
+                [cite_start]Il faut distinguer la <em>modification des conditions de travail</em> (pouvoir de direction, s'impose au salarié) de la <strong>modification d'un élément essentiel du contrat de travail</strong> (nécessite l'accord du salarié via avenant) [cite: 163-166]. <br>
+                La qualification professionnelle et la nature des fonctions sont des éléments essentiels.</p>
+                
+                <p><strong>L'Application (Mineure) :</strong> 
+                Passer de "Gestionnaire administratif" à "Commercial/Accueil" modifie la nature même des fonctions et la qualification. Ce n'est pas un simple changement de tâche.</p>
+                
+                <p><strong>Conclusion :</strong> 
+                Il s'agit d'une modification substantielle du contrat. L'employeur <strong>ne peut pas l'imposer</strong>. Si Sophie refuse, l'employeur devra soit renoncer, soit engager une procédure de licenciement (économique ou personnel), mais ne peut la sanctionner pour son refus.</p>
             </div>
-        </section>
-    </main>
+        </div>
+    </div>
+
+    <div id="quiz" class="tab-content quiz-container">
+        <h2>📝 Quiz de validation</h2>
+        <div style="background:white; padding:20px; border-radius:10px;">
+            <p><strong>1. Quelle est la durée max de la période d'essai d'un cadre en CDI ?</strong></p>
+            <label class="quiz-option"><input type="radio" name="q1" onclick="check(this, false)"> 3 mois</label>
+            [cite_start]<label class="quiz-option"><input type="radio" name="q1" onclick="check(this, true)"> 4 mois [cite: 15]</label>
+            <div class="result"></div>
+
+            <p><strong>2. Qu'est-ce qu'une "Captive" (ex: Bel Re) ?</strong></p>
+            [cite_start]<label class="quiz-option"><input type="radio" name="q2" onclick="check(this, true)"> Une assurance créée par une entreprise pour s'assurer elle-même [cite: 549]</label>
+            <label class="quiz-option"><input type="radio" name="q2" onclick="check(this, false)"> Un courtier en ligne</label>
+            <div class="result"></div>
+
+            <p><strong>3. En 2026, l'IA "Agentique" se distingue car elle est :</strong></p>
+            <label class="quiz-option"><input type="radio" name="q3" onclick="check(this, false)"> Créative</label>
+            [cite_start]<label class="quiz-option"><input type="radio" name="q3" onclick="check(this, true)"> Autonome [cite: 526]</label>
+            <div class="result"></div>
+        </div>
+    </div>
 
     <script>
-        // Fonction pour gérer le changement d'onglets
-        function openTab(tabName) {
-            // 1. Cacher tous les contenus
-            const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(content => content.classList.remove('active'));
-
-            // 2. Désactiver tous les boutons du menu
-            const navBtns = document.querySelectorAll('.nav-btn');
-            navBtns.forEach(btn => btn.classList.remove('active'));
-
-            // 3. Afficher le contenu ciblé
-            document.getElementById(tabName).classList.add('active');
-
-            // 4. Activer le bouton correspondant dans le menu
-            // On cherche le bouton qui a l'attribut onclick contenant le nom de l'onglet
-            const activeBtn = Array.from(navBtns).find(btn => btn.getAttribute('onclick').includes(tabName));
-            if (activeBtn) {
-                activeBtn.classList.add('active');
-            }
-
-            // Fermer le menu mobile si ouvert
-            const navLinks = document.getElementById('navLinks');
-            if (navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
+        function openTab(id) {
+            document.querySelectorAll('.tab-content').forEach(d => d.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            // Trouver le bouton correspondant (astuce simple)
+            let btns = document.getElementsByClassName('tab-btn');
+            for(let btn of btns) {
+                if(btn.onclick.toString().includes(id)) {
+                    btn.classList.add('active');
+                }
             }
         }
 
-        // Fonction Menu Burger Mobile
-        function toggleMenu() {
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('active');
+        function toggle(el) {
+            let details = el.nextElementSibling;
+            if (details && details.classList.contains('details')) {
+                details.classList.toggle('show');
+            }
         }
 
-        // Animation des barres de compétences au chargement
-        // (Simple simulation visuelle quand on clique sur l'onglet Compétences)
-        // Note: Pour une vraie prod, on utiliserait IntersectionObserver
+        function toggleAnswer(id) {
+            let ans = document.getElementById(id);
+            ans.style.display = (ans.style.display === 'block') ? 'none' : 'block';
+        }
+
+        function check(input, isCorrect) {
+            let parent = input.parentElement;
+            let sibling = parent.nextElementSibling;
+            while(sibling && !sibling.classList.contains('result')) {
+                sibling = sibling.nextElementSibling;
+            }
+            if(sibling) {
+                sibling.style.display = 'block';
+                if(isCorrect) {
+                    sibling.className = 'result correct';
+                    sibling.innerHTML = "✅ Bonne réponse !";
+                } else {
+                    sibling.className = 'result wrong';
+                    sibling.innerHTML = "❌ Faux. Relisez le cours !";
+                }
+            }
+        }
     </script>
+
 </body>
 </html>
