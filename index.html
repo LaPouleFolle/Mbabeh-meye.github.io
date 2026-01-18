@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Révision & Examen Assurance 2026</title>
+    <title>Révision Assurance 2026 - Master Class</title>
     <style>
         :root {
             --primary: #2c3e50;    /* Bleu nuit */
@@ -125,7 +125,7 @@
         }
         .answer-box { display: none; margin-top: 15px; padding: 15px; background: #fdf2e9; border-left: 4px solid var(--accent); }
 
-        /* --- EXAMEN QCM --- */
+        /* --- QUIZ QCM --- */
         .exam-container { counter-reset: question-counter; }
         .qcm-item {
             margin-bottom: 25px;
@@ -161,7 +161,7 @@
             margin-top: 5px;
             font-weight: bold;
             font-size: 0.9em;
-            padding: 5px 10px;
+            padding: 10px;
             border-radius: 4px;
         }
         .feedback.correct { color: #155724; background: #d4edda; }
@@ -204,7 +204,7 @@
         <button class="tab-btn active" onclick="openTab('chap13')">📘 Droit (Ch.13)</button>
         <button class="tab-btn" onclick="openTab('chap18')">📈 Stratégie (Ch.18)</button>
         <button class="tab-btn" onclick="openTab('cas')">💼 Étude de Cas</button>
-        <button class="tab-btn" onclick="openTab('examen')">📝 EXAMEN FINAL (20 QCM)</button>
+        <button class="tab-btn" onclick="openTab('quiz')">📝 QUIZ (15 QCM)</button>
     </div>
 
     <div id="chap13" class="tab-content mindmap active">
@@ -213,7 +213,7 @@
             <li>
                 <span class="node root" onclick="toggle(this)">1. Le Contrat de Travail</span>
                 <div class="details">
-                    <strong>Définition :</strong> Convention avec prestation, rémunération et lien de subordination.<br>
+                    [cite_start]<strong>Définition[cite: 7]:</strong> Convention avec prestation, rémunération et lien de subordination.<br>
                     [cite_start]<strong>Lien de Subordination [cite: 63-66] :</strong>
                     <br>1. Direction (ordres)
                     <br>2. Contrôle (exécution)
@@ -306,7 +306,7 @@
             <strong>Question 1 : Qualifiez la stratégie.</strong>
             <button class="reveal-btn" onclick="toggleAnswer('ans1')">Correction</button>
             <div id="ans1" class="answer-box">
-                <strong>Différenciation :</strong> Offre unique (GPS) justifiant un prix élevé. <br>
+                [cite_start]<strong>Différenciation[cite: 312]:</strong> Offre unique (GPS) justifiant un prix élevé. <br>
                 <strong>Diversification :</strong> Nouveau marché (Vélo).
             </div>
         </div>
@@ -315,23 +315,23 @@
             <strong>Question 2 : Quel contrat de travail ?</strong>
             <button class="reveal-btn" onclick="toggleAnswer('ans2')">Correction</button>
             <div id="ans2" class="answer-box">
-                [cite_start]<strong>CDD à objet défini :</strong> Idéal pour les cadres/ingénieurs, durée 18 à 36 mois, correspond parfaitement au projet[cite: 122].
+                [cite_start]<strong>CDD à objet défini[cite: 122]:</strong> Idéal pour les cadres/ingénieurs, durée 18 à 36 mois, correspond parfaitement au projet.
             </div>
         </div>
     </div>
 
-    <div id="examen" class="tab-content exam-container">
-        <h2>📝 Examen Final (20 Questions)</h2>
+    <div id="quiz" class="tab-content exam-container">
+        <h2>📝 EXAMEN FINAL (15 QUESTIONS)</h2>
         <div id="score-display"></div>
 
         <div class="qcm-item" data-correct="c">
-            <div class="qcm-question">Quel élément N'EST PAS un critère du contrat de travail ?</div>
+            <div class="qcm-question">Quel élément N'EST PAS un critère cumulatif du contrat de travail ?</div>
             <div class="qcm-options">
                 <label><input type="radio" name="q1" value="a"> La rémunération</label>
                 <label><input type="radio" name="q1" value="b"> Le lien de subordination</label>
-                <label><input type="radio" name="q1" value="c"> La clause d'exclusivité</label>
+                <label><input type="radio" name="q1" value="c"> La clause de mobilité</label>
             </div>
-            [cite_start]<div class="feedback">La réponse est C. Les 3 critères sont prestation, rémunération, subordination[cite: 7].</div>
+            [cite_start]<div class="feedback">C'est la C. Les critères sont : Prestation, Rémunération, Subordination[cite: 7].</div>
         </div>
 
         <div class="qcm-item" data-correct="b">
@@ -341,187 +341,137 @@
                 <label><input type="radio" name="q2" value="b"> 4 mois</label>
                 <label><input type="radio" name="q2" value="c"> 6 mois</label>
             </div>
-            [cite_start]<div class="feedback">La réponse est B[cite: 15].</div>
+            [cite_start]<div class="feedback">C'est la B[cite: 15].</div>
         </div>
 
         <div class="qcm-item" data-correct="a">
-            <div class="qcm-question">Quels sont les 3 pouvoirs de l'employeur (lien de subordination) ?</div>
+            <div class="qcm-question">Quels sont les 3 pouvoirs de l'employeur (subordination) ?</div>
             <div class="qcm-options">
                 <label><input type="radio" name="q3" value="a"> Direction, Contrôle, Sanction</label>
                 <label><input type="radio" name="q3" value="b"> Direction, Gestion, Sanction</label>
                 <label><input type="radio" name="q3" value="c"> Contrôle, Paiement, Formation</label>
             </div>
-            [cite_start]<div class="feedback">La réponse est A [cite: 63-66].</div>
+            [cite_start]<div class="feedback">C'est la A [cite: 63-66].</div>
         </div>
 
         <div class="qcm-item" data-correct="b">
-            <div class="qcm-question">Quelle est la particularité du CDD de Reconversion (2026) ?</div>
+            <div class="qcm-question">Quelle est la particularité du nouveau "CDD de Reconversion" (2026) ?</div>
             <div class="qcm-options">
                 <label><input type="radio" name="q4" value="a"> Il remplace définitivement le CDI</label>
                 <label><input type="radio" name="q4" value="b"> Il suspend le CDI initial sans le rompre</label>
                 <label><input type="radio" name="q4" value="c"> Il est réservé aux moins de 25 ans</label>
             </div>
-            [cite_start]<div class="feedback">La réponse est B. Le salarié retrouve son poste si échec[cite: 144].</div>
-        </div>
-
-        <div class="qcm-item" data-correct="c">
-            <div class="qcm-question">Sur quoi porte principalement la NAO ?</div>
-            <div class="qcm-options">
-                <label><input type="radio" name="q5" value="a"> La sécurité incendie</label>
-                <label><input type="radio" name="q5" value="b"> Le règlement intérieur</label>
-                <label><input type="radio" name="q5" value="c"> Les salaires et le temps de travail</label>
-            </div>
-            [cite_start]<div class="feedback">La réponse est C[cite: 29].</div>
-        </div>
-
-        <div class="qcm-item" data-correct="a">
-            <div class="qcm-question">À partir de combien de salariés le CSE est-il obligatoire ?</div>
-            <div class="qcm-options">
-                <label><input type="radio" name="q6" value="a"> 11 salariés</label>
-                <label><input type="radio" name="q6" value="b"> 50 salariés</label>
-                <label><input type="radio" name="q6" value="c"> 100 salariés</label>
-            </div>
-            [cite_start]<div class="feedback">La réponse est A[cite: 238].</div>
+            [cite_start]<div class="feedback">C'est la B. Le salarié retrouve son poste si échec[cite: 144].</div>
         </div>
 
         <div class="qcm-item" data-correct="b">
-            <div class="qcm-question">Quel délai de prévenance pour rompre un essai après 1 mois de présence ?</div>
+            <div class="qcm-question">Pour rompre la période d'essai, il faut respecter un :</div>
             <div class="qcm-options">
-                <label><input type="radio" name="q7" value="a"> 48 heures</label>
-                <label><input type="radio" name="q7" value="b"> 2 semaines</label>
-                <label><input type="radio" name="q7" value="c"> 1 mois</label>
+                <label><input type="radio" name="q5" value="a"> Motif légitime</label>
+                <label><input type="radio" name="q5" value="b"> Délai de prévenance</label>
+                <label><input type="radio" name="q5" value="c"> Entretien préalable</label>
             </div>
-            [cite_start]<div class="feedback">La réponse est B[cite: 23].</div>
+            [cite_start]<div class="feedback">C'est la B[cite: 20].</div>
         </div>
 
         <div class="qcm-item" data-correct="c">
             <div class="qcm-question">Pour licencier, l'employeur doit justifier d'une :</div>
             <div class="qcm-options">
-                <label><input type="radio" name="q8" value="a"> Cause simple</label>
-                <label><input type="radio" name="q8" value="b"> Faute grave obligatoirement</label>
-                <label><input type="radio" name="q8" value="c"> Cause Réelle et Sérieuse (CRS)</label>
+                <label><input type="radio" name="q6" value="a"> Cause simple</label>
+                <label><input type="radio" name="q6" value="b"> Faute grave obligatoirement</label>
+                <label><input type="radio" name="q6" value="c"> Cause Réelle et Sérieuse (CRS)</label>
             </div>
-            [cite_start]<div class="feedback">La réponse est C[cite: 178].</div>
+            [cite_start]<div class="feedback">C'est la C[cite: 178].</div>
         </div>
 
         <div class="qcm-item" data-correct="b">
-            <div class="qcm-question">Si l'employeur modifie un élément essentiel du contrat (ex: salaire) :</div>
+            <div class="qcm-question">Si l'employeur modifie un élément essentiel (ex: qualification) :</div>
             <div class="qcm-options">
-                <label><input type="radio" name="q9" value="a"> Le salarié doit accepter</label>
-                <label><input type="radio" name="q9" value="b"> L'accord du salarié est obligatoire</label>
-                <label><input type="radio" name="q9" value="c"> C'est un simple pouvoir de direction</label>
+                <label><input type="radio" name="q7" value="a"> Le salarié doit accepter</label>
+                <label><input type="radio" name="q7" value="b"> L'accord du salarié est obligatoire</label>
+                <label><input type="radio" name="q7" value="c"> C'est un pouvoir de direction</label>
             </div>
-            [cite_start]<div class="feedback">La réponse est B[cite: 166].</div>
-        </div>
-
-        <div class="qcm-item" data-correct="a">
-            <div class="qcm-question">Quel motif NE PERMET PAS de recourir au CDD ?</div>
-            <div class="qcm-options">
-                <label><input type="radio" name="q10" value="a"> Remplacer un salarié gréviste</label>
-                <label><input type="radio" name="q10" value="b"> Accroissement temporaire d'activité</label>
-                <label><input type="radio" name="q10" value="c"> Emploi saisonnier</label>
-            </div>
-            [cite_start]<div class="feedback">La réponse est A[cite: 90].</div>
+            [cite_start]<div class="feedback">C'est la B[cite: 166].</div>
         </div>
 
         <div class="qcm-item" data-correct="b">
             <div class="qcm-question">Selon Porter, proposer une offre unique à prix élevé est une stratégie de :</div>
             <div class="qcm-options">
-                <label><input type="radio" name="q11" value="a"> Domination par les coûts</label>
-                <label><input type="radio" name="q11" value="b"> Différenciation</label>
-                <label><input type="radio" name="q11" value="c"> Volume</label>
+                <label><input type="radio" name="q8" value="a"> Domination par les coûts</label>
+                <label><input type="radio" name="q8" value="b"> Différenciation</label>
+                <label><input type="radio" name="q8" value="c"> Volume</label>
             </div>
-            [cite_start]<div class="feedback">La réponse est B[cite: 312].</div>
+            [cite_start]<div class="feedback">C'est la B[cite: 312].</div>
         </div>
 
         <div class="qcm-item" data-correct="c">
-            <div class="qcm-question">Quelle entreprise la Matmut a-t-elle rachetée pour se diversifier en épargne ?</div>
+            <div class="qcm-question">Quelle entreprise la Matmut a-t-elle rachetée pour se diversifier ?</div>
             <div class="qcm-options">
-                <label><input type="radio" name="q12" value="a"> BNP Paribas</label>
-                <label><input type="radio" name="q12" value="b"> Swiss Life</label>
-                <label><input type="radio" name="q12" value="c"> HSBC Assurances Vie</label>
+                <label><input type="radio" name="q9" value="a"> Swiss Life</label>
+                <label><input type="radio" name="q9" value="b"> Axa Vie</label>
+                <label><input type="radio" name="q9" value="c"> HSBC Assurances Vie</label>
             </div>
-            [cite_start]<div class="feedback">La réponse est C[cite: 337].</div>
-        </div>
-
-        <div class="qcm-item" data-correct="b">
-            <div class="qcm-question">CNP Assurances s'est diversifiée dans la santé animale avec :</div>
-            <div class="qcm-options">
-                <label><input type="radio" name="q13" value="a"> Crédit Agricole</label>
-                <label><input type="radio" name="q13" value="b"> La Poste</label>
-                <label><input type="radio" name="q13" value="c"> Amazon</label>
-            </div>
-            [cite_start]<div class="feedback">La réponse est B[cite: 442].</div>
-        </div>
-
-        <div class="qcm-item" data-correct="a">
-            <div class="qcm-question">Quel est l'objectif d'April à l'international d'ici 8-10 ans ?</div>
-            <div class="qcm-options">
-                <label><input type="radio" name="q14" value="a"> 50% du chiffre d'affaires</label>
-                <label><input type="radio" name="q14" value="b"> 20% du chiffre d'affaires</label>
-                <label><input type="radio" name="q14" value="c"> Ouvrir 100 agences</label>
-            </div>
-            [cite_start]<div class="feedback">La réponse est A[cite: 364].</div>
-        </div>
-
-        <div class="qcm-item" data-correct="c">
-            <div class="qcm-question">Quelle IA est capable d'agir de manière autonome (prévue dès 2026) ?</div>
-            <div class="qcm-options">
-                <label><input type="radio" name="q15" value="a"> IA Prédictive</label>
-                <label><input type="radio" name="q15" value="b"> IA Générative</label>
-                <label><input type="radio" name="q15" value="c"> IA Agentique</label>
-            </div>
-            [cite_start]<div class="feedback">La réponse est C[cite: 526].</div>
-        </div>
-
-        <div class="qcm-item" data-correct="a">
-            <div class="qcm-question">À quoi sert principalement l'IA Prédictive en assurance ?</div>
-            <div class="qcm-options">
-                <label><input type="radio" name="q16" value="a"> Prévoir les risques et tarifer</label>
-                <label><input type="radio" name="q16" value="b"> Rédiger des emails</label>
-                <label><input type="radio" name="q16" value="c"> Gérer l'accueil téléphonique</label>
-            </div>
-            [cite_start]<div class="feedback">La réponse est A[cite: 506].</div>
+            [cite_start]<div class="feedback">C'est la C[cite: 337].</div>
         </div>
 
         <div class="qcm-item" data-correct="b">
             <div class="qcm-question">Qu'est-ce qu'une "Captive" d'assurance ?</div>
             <div class="qcm-options">
-                <label><input type="radio" name="q17" value="a"> Une filiale otage d'un groupe</label>
-                <label><input type="radio" name="q17" value="b"> Une assurance créée par un groupe pour s'assurer lui-même</label>
-                <label><input type="radio" name="q17" value="c"> Un courtier captif d'un assureur</label>
+                <label><input type="radio" name="q10" value="a"> Une filiale otage d'un groupe</label>
+                <label><input type="radio" name="q10" value="b"> Une assurance créée par un groupe pour s'assurer lui-même</label>
+                <label><input type="radio" name="q10" value="c"> Un courtier captif</label>
             </div>
-            [cite_start]<div class="feedback">La réponse est B[cite: 548].</div>
+            [cite_start]<div class="feedback">C'est la B[cite: 548].</div>
         </div>
 
         <div class="qcm-item" data-correct="a">
-            <div class="qcm-question">Quelle entreprise fromagère a créé sa captive "Bel Re" en 2025 ?</div>
+            <div class="qcm-question">Quelle entreprise a créé sa captive "Bel Re" en 2025 ?</div>
             <div class="qcm-options">
-                <label><input type="radio" name="q18" value="a"> Groupe Bel</label>
-                <label><input type="radio" name="q18" value="b"> Lactalis</label>
-                <label><input type="radio" name="q18" value="c"> Danone</label>
+                <label><input type="radio" name="q11" value="a"> Groupe Bel (Vache qui rit)</label>
+                <label><input type="radio" name="q11" value="b"> Lactalis</label>
+                <label><input type="radio" name="q11" value="c"> Danone</label>
             </div>
-            [cite_start]<div class="feedback">La réponse est A[cite: 558].</div>
+            [cite_start]<div class="feedback">C'est la A[cite: 558].</div>
         </div>
 
         <div class="qcm-item" data-correct="c">
-            <div class="qcm-question">Que signifie LPS ?</div>
+            <div class="qcm-question">Quelle IA est capable d'agir de manière autonome (dès 2026) ?</div>
             <div class="qcm-options">
-                <label><input type="radio" name="q19" value="a"> Libre Protection Sociale</label>
-                <label><input type="radio" name="q19" value="b"> Loi de Protection des Sinistres</label>
-                <label><input type="radio" name="q19" value="c"> Libre Prestation de Services</label>
+                <label><input type="radio" name="q12" value="a"> IA Prédictive</label>
+                <label><input type="radio" name="q12" value="b"> IA Générative</label>
+                <label><input type="radio" name="q12" value="c"> IA Agentique</label>
             </div>
-            [cite_start]<div class="feedback">La réponse est C. C'est le passeport européen[cite: 600].</div>
+            [cite_start]<div class="feedback">C'est la C[cite: 526].</div>
         </div>
 
         <div class="qcm-item" data-correct="a">
-            <div class="qcm-question">Quelle activité d'assistance a augmenté de 26% en 2024 ?</div>
+            <div class="qcm-question">Quel est l'objectif d'April à l'international d'ici 8-10 ans ?</div>
             <div class="qcm-options">
-                <label><input type="radio" name="q20" value="a"> Voyage</label>
-                <label><input type="radio" name="q20" value="b"> Auto</label>
-                <label><input type="radio" name="q20" value="c"> Habitation</label>
+                <label><input type="radio" name="q13" value="a"> 50% du chiffre d'affaires</label>
+                <label><input type="radio" name="q13" value="b"> 20% du chiffre d'affaires</label>
+                <label><input type="radio" name="q13" value="c"> 100% du chiffre d'affaires</label>
             </div>
-            [cite_start]<div class="feedback">La réponse est A[cite: 646].</div>
+            [cite_start]<div class="feedback">C'est la A[cite: 364].</div>
+        </div>
+
+        <div class="qcm-item" data-correct="c">
+            <div class="qcm-question">Que signifie LPS (Passeport Européen) ?</div>
+            <div class="qcm-options">
+                <label><input type="radio" name="q14" value="a"> Loi de Protection des Sinistres</label>
+                <label><input type="radio" name="q14" value="b"> Libre Protection Sociale</label>
+                <label><input type="radio" name="q14" value="c"> Libre Prestation de Services</label>
+            </div>
+            [cite_start]<div class="feedback">C'est la C[cite: 600].</div>
+        </div>
+
+        <div class="qcm-item" data-correct="a">
+            <div class="qcm-question">Quel est le nom de l'outil mutualisé de missionnement des dépanneurs ?</div>
+            <div class="qcm-options">
+                <label><input type="radio" name="q15" value="a"> Nomad</label>
+                <label><input type="radio" name="q15" value="b"> Comet</label>
+                <label><input type="radio" name="q15" value="c"> Atlas</label>
+            </div>
+            [cite_start]<div class="feedback">C'est la A[cite: 692].</div>
         </div>
 
         <button class="submit-btn" onclick="gradeExam()">✅ Valider l'Examen</button>
@@ -558,10 +508,10 @@
         // Notation de l'Examen
         function gradeExam() {
             let score = 0;
-            const total = 20;
+            const total = 15;
             const questions = document.querySelectorAll('.qcm-item');
 
-            questions.forEach((q, index) => {
+            questions.forEach((q) => {
                 const correctVal = q.getAttribute('data-correct');
                 const inputs = q.querySelectorAll('input[type="radio"]');
                 const feedback = q.querySelector('.feedback');
@@ -569,7 +519,7 @@
 
                 inputs.forEach(input => {
                     if (input.checked) userSelected = input.value;
-                    input.disabled = true; // Verrouiller
+                    input.disabled = true; 
                 });
 
                 feedback.style.display = 'block';
@@ -583,16 +533,15 @@
                 }
             });
 
-            // Afficher le score final
             const scoreDisplay = document.getElementById('score-display');
             scoreDisplay.style.display = 'block';
-            scoreDisplay.innerHTML = `Votre Note : ${score} / 20`;
+            scoreDisplay.innerHTML = `Votre Note : ${score} / ${total}`;
             
-            if(score >= 16) scoreDisplay.style.backgroundColor = "#27ae60"; // Vert
-            else if(score >= 10) scoreDisplay.style.backgroundColor = "#e67e22"; // Orange
-            else scoreDisplay.style.backgroundColor = "#c0392b"; // Rouge
+            if(score >= 12) scoreDisplay.style.backgroundColor = "#27ae60"; 
+            else if(score >= 8) scoreDisplay.style.backgroundColor = "#e67e22"; 
+            else scoreDisplay.style.backgroundColor = "#c0392b"; 
 
-            window.scrollTo(0, 0); // Remonter pour voir le score
+            window.scrollTo(0, 0); 
         }
     </script>
 
