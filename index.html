@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Révision Assurance 2026 - Master Class</title>
+    <title>Révision & Examen Assurance 2026</title>
     <style>
         :root {
             --primary: #2c3e50;    /* Bleu nuit */
-            --secondary: #2980b9;  /* Bleu clair */
-            --accent: #e67e22;     /* Orange */
+            --secondary: #3498db;  /* Bleu roi */
+            --accent: #e74c3c;     /* Rouge/Orange */
             --success: #27ae60;    /* Vert */
-            --bg: #ecf0f1;         /* Gris très clair */
-            --text: #2c3e50;
+            --bg: #f4f7f6;         /* Gris fond */
+            --card-bg: #ffffff;
+            --text: #333;
         }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg);
@@ -23,7 +25,8 @@
             flex-direction: column;
             align-items: center;
         }
-        h1 { margin-bottom: 20px; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; }
+
+        h1 { margin-bottom: 20px; color: var(--primary); text-transform: uppercase; border-bottom: 3px solid var(--secondary); padding-bottom: 10px; }
 
         /* --- NAVIGATION --- */
         .tabs {
@@ -33,47 +36,43 @@
             background: white;
             border-radius: 50px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            padding: 5px;
+            padding: 10px;
             margin-bottom: 30px;
-            max-width: 95%;
+            gap: 10px;
         }
         .tab-btn {
-            padding: 12px 20px;
+            padding: 12px 25px;
             border: none;
             background: transparent;
             cursor: pointer;
             font-size: 15px;
             font-weight: 600;
-            color: var(--text);
-            border-radius: 40px;
+            color: #7f8c8d;
+            border-radius: 30px;
             transition: all 0.3s;
-            margin: 2px;
         }
-        .tab-btn:hover { background: #f0f3f4; }
+        .tab-btn:hover { background: #ecf0f1; color: var(--primary); }
         .tab-btn.active {
             background: var(--secondary);
             color: white;
-            box-shadow: 0 2px 10px rgba(41, 128, 185, 0.3);
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.4);
         }
 
         /* --- CONTENU --- */
         .tab-content {
             display: none;
             width: 100%;
-            max-width: 1100px;
-            animation: slideIn 0.4s ease-out;
-            padding-bottom: 50px;
-        }
-        .tab-content.active { display: block; }
-        @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* --- CARTE MENTALE --- */
-        .mindmap-container {
-            background: white;
-            padding: 30px;
+            max-width: 1000px;
+            background: var(--card-bg);
+            padding: 40px;
             border-radius: 15px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            animation: fadeIn 0.4s ease-out;
         }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- CARTE MENTALE --- */
         .mindmap ul { list-style-type: none; padding-left: 20px; border-left: 2px solid #bdc3c7; }
         .mindmap > ul { border-left: none; padding-left: 0; }
         .mindmap li { margin: 15px 0; position: relative; }
@@ -96,9 +95,8 @@
             z-index: 2;
         }
         .node:hover { transform: translateX(5px); border-color: var(--secondary); box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-        .node.root { background: var(--primary); color: white; font-size: 1.2em; font-weight: bold; border: none; }
-        .node.level-1 { background: var(--secondary); color: white; border: none; }
-        .node.level-2 { background: #d6eaf8; color: var(--primary); border-left: 4px solid var(--secondary); }
+        .node.root { background: var(--primary); color: white; font-weight: bold; border: none; }
+        .node.level-1 { background: #ebf5fb; color: var(--primary); border-left: 4px solid var(--secondary); }
 
         .details {
             display: none;
@@ -108,142 +106,140 @@
             background: #fff9e6;
             border-left: 4px solid #f1c40f;
             border-radius: 0 5px 5px 0;
-            font-size: 0.95em;
-            line-height: 1.6;
+            font-size: 0.9em;
             color: #444;
         }
         .details.show { display: block; }
 
-        /* --- ÉTUDE DE CAS & DISSERTATION --- */
-        .case-study, .dissertation-container {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-        }
+        /* --- ETUDE DE CAS --- */
         .scenario-box {
-            background: #e8f6f3;
+            background: #e8f8f5;
             border-left: 5px solid var(--success);
             padding: 20px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             font-style: italic;
         }
-        .question-box { margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
-        
         .reveal-btn {
-            background: var(--accent);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-top: 10px;
+            background: var(--accent); color: white; border: none; padding: 10px 20px;
+            border-radius: 5px; cursor: pointer; margin-top: 10px; font-weight: bold;
         }
-        .answer-box {
+        .answer-box { display: none; margin-top: 15px; padding: 15px; background: #fdf2e9; border-left: 4px solid var(--accent); }
+
+        /* --- EXAMEN QCM --- */
+        .exam-container { counter-reset: question-counter; }
+        .qcm-item {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #ddd;
+        }
+        .qcm-question {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        .qcm-question::before {
+            counter-increment: question-counter;
+            content: "Q" counter(question-counter) ". ";
+            color: var(--secondary);
+        }
+        .qcm-options label {
+            display: block;
+            padding: 10px 15px;
+            margin: 5px 0;
+            background: #f8f9fa;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .qcm-options label:hover { background: #e9ecef; }
+        .qcm-options input { margin-right: 10px; }
+
+        .feedback {
             display: none;
-            margin-top: 15px;
-            padding: 15px;
-            background: #fdf2e9;
-            border-left: 4px solid var(--accent);
+            margin-top: 5px;
+            font-weight: bold;
+            font-size: 0.9em;
+            padding: 5px 10px;
             border-radius: 4px;
         }
-        .methodo { font-weight: bold; color: var(--accent); text-transform: uppercase; font-size: 0.8em; margin-bottom: 5px; display: block; }
+        .feedback.correct { color: #155724; background: #d4edda; }
+        .feedback.incorrect { color: #721c24; background: #f8d7da; }
 
-        /* --- ZONE DE TEXTE DISSERTATION --- */
-        textarea {
-            width: 100%;
-            height: 200px;
-            padding: 15px;
-            border: 2px solid #ddd;
+        #score-display {
+            display: none;
+            text-align: center;
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: var(--primary);
+            color: white;
             border-radius: 10px;
-            font-family: 'Segoe UI', sans-serif;
-            font-size: 14px;
-            resize: vertical;
-            margin-top: 10px;
-            transition: 0.3s;
-        }
-        textarea:focus {
-            border-color: var(--secondary);
-            outline: none;
-            box-shadow: 0 0 10px rgba(41, 128, 185, 0.2);
         }
 
-        /* --- QUIZ --- */
-        .quiz-option {
-            display: block; padding: 10px; margin: 5px 0;
-            background: #f8f9fa; border-radius: 5px; cursor: pointer; border: 1px solid #eee;
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2em;
+            background: var(--success);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 30px;
+            font-weight: bold;
         }
-        .quiz-option:hover { background: #e9ecef; }
-        .result { font-weight: bold; margin-top: 5px; display: none; }
-        .result.correct { color: var(--success); }
-        .result.wrong { color: #c0392b; }
+        .submit-btn:hover { background: #219150; }
 
     </style>
 </head>
 <body>
 
-    <h1>🎓 Master Révision Assurance</h1>
+    <h1>🎓 Master Assurance 2026</h1>
 
     <div class="tabs">
         <button class="tab-btn active" onclick="openTab('chap13')">📘 Droit (Ch.13)</button>
         <button class="tab-btn" onclick="openTab('chap18')">📈 Stratégie (Ch.18)</button>
-        <button class="tab-btn" onclick="openTab('cas')">💼 Cas Rapide</button>
-        <button class="tab-btn" onclick="openTab('dissertation')">✍️ Dissertation</button>
-        <button class="tab-btn" onclick="openTab('quiz')">📝 Quiz</button>
+        <button class="tab-btn" onclick="openTab('cas')">💼 Étude de Cas</button>
+        <button class="tab-btn" onclick="openTab('examen')">📝 EXAMEN FINAL (20 QCM)</button>
     </div>
 
-    <div id="chap13" class="tab-content mindmap-container mindmap active">
-        <h2>Chapitre 13 : Le Droit du Travail</h2>
+    <div id="chap13" class="tab-content mindmap active">
+        <h2>Chapitre 13 : Droit du Travail</h2>
         <ul>
             <li>
                 <span class="node root" onclick="toggle(this)">1. Le Contrat de Travail</span>
                 <div class="details">
-                    [cite_start]<strong>Définition :</strong> Convention où une personne travaille pour une autre, sous sa subordination, contre rémunération[cite: 7].<br>
-                    <strong>3 Critères (Cumulatifs) :</strong>
-                    <br>1. Prestation de travail.
-                    <br>2. Rémunération.
-                    <br>3. [cite_start]<strong>Lien de subordination</strong> (Le critère décisif)[cite: 7].
+                    <strong>Définition :</strong> Convention avec prestation, rémunération et lien de subordination.<br>
+                    [cite_start]<strong>Lien de Subordination [cite: 63-66] :</strong>
+                    <br>1. Direction (ordres)
+                    <br>2. Contrôle (exécution)
+                    <br>3. Sanction (disciplinaire)
                 </div>
                 <ul>
                     <li>
-                        <span class="node level-1" onclick="toggle(this)">Le Lien de Subordination</span>
+                        [cite_start]<span class="node level-1" onclick="toggle(this)">Période d'Essai [cite: 13-15]</span>
                         <div class="details">
-                            C'est l'autorité de l'employeur. [cite_start]Il se manifeste par <strong>3 Pouvoirs</strong> [cite: 63-66] :
-                            <br>🔹 <strong>Direction :</strong> Donner des ordres et directives.
-                            <br>🔹 <strong>Contrôle :</strong> Vérifier l'exécution du travail.
-                            <br>🔹 <strong>Disciplinaire :</strong> Sanctionner les manquements.
-                        </div>
-                    </li>
-                    <li>
-                        <span class="node level-1" onclick="toggle(this)">La Période d'Essai</span>
-                        <div class="details">
-                            <strong>Durées Max (CDI) :</strong>
-                            <br>• Ouvriers/Employés : 2 mois.
-                            <br>• Techniciens : 3 mois.
-                            [cite_start]<br>• Cadres : 4 mois [cite: 13-15].<br>
-                            [cite_start]<strong>Rupture :</strong> Libre (sans motif), mais <strong>Délai de prévenance</strong> obligatoire (ex: 48h entre 8j et 1 mois) [cite: 20-22].
+                            • Ouvriers/Employés : 2 mois max.<br>
+                            • Techniciens/Agents maîtrise : 3 mois max.<br>
+                            • Cadres : 4 mois max.<br>
+                            <em>Rupture : délai de prévenance obligatoire.</em>
                         </div>
                     </li>
                 </ul>
             </li>
             <li>
-                <span class="node root" onclick="toggle(this)">2. Les Types de Contrats</span>
+                <span class="node root" onclick="toggle(this)">2. Types de Contrats</span>
                 <ul>
                     <li>
-                        <span class="node level-1" onclick="toggle(this)">CDI vs CDD</span>
+                        [cite_start]<span class="node level-1" onclick="toggle(this)">CDD Reconversion (2026) [cite: 130-137]</span>
                         <div class="details">
-                            [cite_start]<strong>CDI :</strong> Forme "normale et générale"[cite: 9].<br>
-                            [cite_start]<strong>CDD :</strong> Exception, pour tâche précise et temporaire[cite: 10].
-                            [cite_start]<br>✅ Motifs valables : Remplacement, Accroissement d'activité, Saisonnier[cite: 89, 107, 109].
-                        </div>
-                    </li>
-                    <li>
-                        <span class="node level-1" onclick="toggle(this)">🆕 Nouveauté 2026 : CDD Reconversion</span>
-                        <div class="details">
-                            [cite_start]<strong>Objectif :</strong> Faciliter les transitions pro[cite: 128].
-                            <br><strong>Mécanisme :</strong> Le CDI initial est <em>suspendu</em> (pas rompu). [cite_start]Le salarié teste un nouveau métier (6 à 12 mois)[cite: 137, 144].
-                            [cite_start]<br><strong>Sécurité :</strong> Si échec, retour au poste initial garanti[cite: 146].
+                            • <strong>But :</strong> Changer de métier ou acquérir nouvelles compétences.<br>
+                            • <strong>Durée :</strong> 6 à 12 mois.<br>
+                            • <strong>Avantage :</strong> Le CDI d'origine est suspendu, pas rompu.
                         </div>
                     </li>
                 </ul>
@@ -252,18 +248,17 @@
                 <span class="node root" onclick="toggle(this)">3. Rupture & Collectif</span>
                 <ul>
                     <li>
-                        <span class="node level-1" onclick="toggle(this)">Rupture du CDI</span>
+                        [cite_start]<span class="node level-1" onclick="toggle(this)">Licenciement [cite: 178]</span>
                         <div class="details">
-                            [cite_start]<strong>Démission :</strong> Volonté claire du salarié[cite: 171].
-                            [cite_start]<br><strong>Licenciement :</strong> Doit avoir une <strong>Cause Réelle et Sérieuse (CRS)</strong> (Personnelle ou Économique)[cite: 178].
-                            [cite_start]<br><strong>Rupture Conventionnelle :</strong> Commun accord + Indemnités + Chômage[cite: 184].
+                            Nécessite une <strong>Cause Réelle et Sérieuse (CRS)</strong>.<br>
+                            Motif personnel (faute, inaptitude) ou Économique.
                         </div>
                     </li>
                     <li>
-                        <span class="node level-1" onclick="toggle(this)">Relations Collectives</span>
+                        [cite_start]<span class="node level-1" onclick="toggle(this)">NAO [cite: 28-36]</span>
                         <div class="details">
-                            [cite_start]<strong>CSE (Comité Social et Économique) :</strong> Obligatoire dès 11 salariés[cite: 238].
-                            <br><strong>NAO :</strong> Négociation annuelle sur les salaires. [cite_start]Ex: Augmentation 2.3% chez AXA en 2026[cite: 36].
+                            Négociation Annuelle Obligatoire (Salaires, Temps de travail).<br>
+                            Ex: AXA 2026 (Budget 2,3%).
                         </div>
                     </li>
                 </ul>
@@ -271,169 +266,273 @@
         </ul>
     </div>
 
-    <div id="chap18" class="tab-content mindmap-container mindmap">
-        <h2>Chapitre 18 : Stratégie & Organisation</h2>
+    <div id="chap18" class="tab-content mindmap">
+        <h2>Chapitre 18 : Stratégie</h2>
         <ul>
             <li>
-                <span class="node root" onclick="toggle(this)">1. Fondements Stratégiques</span>
-                <ul>
-                    <li>
-                        <span class="node level-1" onclick="toggle(this)">Les 3 Stratégies de Porter</span>
-                        <div class="details">
-                            <strong>1. [cite_start]Domination par les Coûts :</strong> Produire moins cher (Volume)[cite: 312].
-                            <br><strong>2. [cite_start]Différenciation :</strong> Produit unique/supérieur = Prix élevé (Premium)[cite: 312].
-                            <br><strong>3. [cite_start]Focalisation :</strong> Créneau étroit (Niche)[cite: 312].
-                        </div>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <span class="node root" onclick="toggle(this)">2. Croissance</span>
-                <ul>
-                    <li>
-                        <span class="node level-1" onclick="toggle(this)">Diversification</span>
-                        <div class="details">
-                            [cite_start]Se lancer sur de nouveaux marchés/produits[cite: 316].
-                            [cite_start]<br>Ex: <strong>Matmut</strong> achète HSBC Vie pour faire de l'épargne[cite: 337].
-                            [cite_start]<br>Ex: <strong>CNP</strong> se lance dans la santé chien/chat avec La Poste[cite: 356].
-                        </div>
-                    </li>
-                    <li>
-                        <span class="node level-1" onclick="toggle(this)">Internationalisation</span>
-                        <div class="details">
-                            [cite_start]Ex: <strong>April</strong> vise 50% de son CA hors de France d'ici 8-10 ans[cite: 364].
-                        </div>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <span class="node root" onclick="toggle(this)">3. Innovation & IA</span>
+                <span class="node root" onclick="toggle(this)">1. [cite_start]Stratégies (Porter) [cite: 312]</span>
                 <div class="details">
-                    L'IA transforme la chaîne de valeur.
+                    • <strong>Domination par les coûts :</strong> Prix bas, volume.<br>
+                    • <strong>Différenciation :</strong> Unique, prix premium.<br>
+                    • <strong>Focalisation :</strong> Niche.
                 </div>
-                <ul>
-                    <li>
-                        <span class="node level-1" onclick="toggle(this)">Les 3 Types d'IA</span>
-                        <div class="details">
-                            [cite_start]<strong>IA Prédictive :</strong> Analyse le passé pour prédire le risque (Tarification)[cite: 505].<br>
-                            [cite_start]<strong>IA Générative :</strong> Aide à la rédaction, chatbots intelligents[cite: 514].<br>
-                            [cite_start]<strong>IA Agentique (Dès 2026) :</strong> Agit de manière <strong>autonome</strong> (ex: gère un sinistre seul)[cite: 526].
-                        </div>
-                    </li>
-                </ul>
             </li>
             <li>
-                <span class="node root" onclick="toggle(this)">4. Structures Spéciales</span>
-                <ul>
-                    <li>
-                        <span class="node level-1" onclick="toggle(this)">Les Captives</span>
-                        <div class="details">
-                            Entreprise non-assureur qui crée sa propre assurance pour ses risques.
-                            [cite_start]<br>Ex: <strong>Bel Re</strong> (Groupe Bel, Fromagerie) agréée en 2025[cite: 548, 558].
-                        </div>
-                    </li>
-                    <li>
-                        <span class="node level-1" onclick="toggle(this)">LPS (Libre Prestation Services)</span>
-                        <div class="details">
-                            Vendre en Europe sans être installé dans le pays. [cite_start]"Passeport Européen"[cite: 593].
-                        </div>
-                    </li>
-                </ul>
+                <span class="node root" onclick="toggle(this)">2. Développement</span>
+                <div class="details">
+                    [cite_start]• <strong>Diversification :</strong> Matmut achète HSBC Vie[cite: 337].<br>
+                    [cite_start]• <strong>Captives :</strong> Création d'assureur propre (Bel Re)[cite: 558].<br>
+                    [cite_start]• <strong>LPS :</strong> Vente en UE sans établissement[cite: 600].
+                </div>
+            </li>
+            <li>
+                <span class="node root" onclick="toggle(this)">3. [cite_start]Innovation IA [cite: 504-526]</span>
+                <div class="details">
+                    • <strong>Prédictive :</strong> Tarification, Risque.<br>
+                    • <strong>Générative :</strong> Assistance conseillers.<br>
+                    • <strong>Agentique (2026) :</strong> Autonomie d'action.
+                </div>
             </li>
         </ul>
     </div>
 
-    <div id="cas" class="tab-content case-study">
-        <h2>💼 Cas Rapide : Assur'Bike 2026</h2>
+    <div id="cas" class="tab-content">
+        <h2>💼 Étude de Cas Rapide</h2>
         <div class="scenario-box">
-            <p>La mutuelle "Assur'Bike", spécialisée dans l'assurance moto, lance une offre pour vélos électriques haut de gamme avec capteur GPS. Elle souhaite embaucher Julien, développeur, pour 18 mois pour ce projet.</p>
+            <p><strong>Contexte :</strong> La mutuelle "Assur'Bike" (moto) lance une offre vélo haut de gamme avec GPS offert. Elle recrute un ingénieur pour 18 mois pour ce projet.</p>
         </div>
-        <div class="question-box">
-            <h3>Question 1 : Qualifiez la stratégie.</h3>
-            <button class="reveal-btn" onclick="toggleAnswer('ans1')">Voir correction</button>
-            <div id="ans1" class="answer-box">
-                <span class="methodo">Méthode : Concept + Justification</span>
-                <p><strong>Diversification et Différenciation :</strong> Sortie du marché historique (moto) vers le vélo, avec une offre à valeur ajoutée (GPS) pour justifier un prix premium.</p>
-            </div>
-        </div>
-        <div class="question-box">
-            <h3>Question 2 : Quel contrat pour Julien ?</h3>
-            <button class="reveal-btn" onclick="toggleAnswer('ans2')">Voir correction</button>
-            <div id="ans2" class="answer-box">
-                <span class="methodo">Méthode : Syllogisme</span>
-                <p><strong>Droit :</strong> CDD possible pour objet défini ou accroissement d'activité.<br><strong>Application :</strong> CDD à objet défini (ingénieur, 18 à 36 mois) est idéal.</p>
-            </div>
-        </div>
-    </div>
-
-    <div id="dissertation" class="tab-content dissertation-container">
-        <h2>✍️ Entraînement à la Dissertation (Nouveau Cas)</h2>
         
-        <div class="scenario-box">
-            <h3>Le Cas : "Mutuelle Grand-Est" (Conflit Interne)</h3>
-            <p>La "Mutuelle Grand-Est" subit une forte baisse de rentabilité sur ses contrats auto classiques. Pour réagir, la direction décide d'une stratégie de <strong>recentrage sur la relation client</strong> en agence.</p>
-            <p><strong>Le Problème RH :</strong> Sophie est "Gestionnaire Back-Office" (gestion administrative des dossiers sans contact client) depuis 10 ans. Son contrat de travail stipule "Travail administratif au siège".</p>
-            <p>La direction informe Sophie que dès lundi prochain, elle devra travailler à l'accueil de l'agence (contact client direct) pour vendre des contrats. Son salaire ne change pas. Sophie refuse.</p>
-            <p><strong>Votre Mission :</strong> Analysez la situation. L'employeur peut-il imposer ce changement ? Identifiez le problème juridique précis.</p>
+        <div style="margin-bottom: 20px;">
+            <strong>Question 1 : Qualifiez la stratégie.</strong>
+            <button class="reveal-btn" onclick="toggleAnswer('ans1')">Correction</button>
+            <div id="ans1" class="answer-box">
+                <strong>Différenciation :</strong> Offre unique (GPS) justifiant un prix élevé. <br>
+                <strong>Diversification :</strong> Nouveau marché (Vélo).
+            </div>
         </div>
 
-        <div class="question-box">
-            <h3>Votre Réponse :</h3>
-            <p><em>Utilisez le syllogisme juridique (Faits, Droit, Application) et les notions de stratégie.</em></p>
-            <textarea placeholder="Commencez votre analyse ici... (Exemple : Dans un premier temps, il convient de qualifier la stratégie de l'entreprise...)"></textarea>
-            
-            <button class="reveal-btn" style="width:100%; margin-top:20px; font-size:1.1em;" onclick="toggleAnswer('dissert-correction')">Voir la correction type</button>
-
-            <div id="dissert-correction" class="answer-box">
-                <h3>Correction Type (Analyse)</h3>
-                
-                <h4>1. Sur le plan Stratégique (Chap 18)</h4>
-                <p>L'entreprise opère un changement organisationnel pour répondre à une baisse de rentabilité. Elle cherche à valoriser ses ressources humaines vers des tâches commerciales (Front Office) pour augmenter le CA. C'est une stratégie d'<strong>optimisation des ressources internes</strong> face à la concurrence.</p>
-
-                <h4>2. Sur le plan Juridique (Chap 13) - Le Cœur du problème</h4>
-                <span class="methodo">Syllogisme Juridique :</span>
-                
-                <p><strong>Les Faits :</strong> L'employeur impose un passage d'un poste administratif (Back-Office) à un poste commercial (Front-Office) sans l'accord de la salariée.</p>
-                
-                <p><strong>La Règle de Droit (Majeure) :</strong> 
-                [cite_start]Il faut distinguer la <em>modification des conditions de travail</em> (pouvoir de direction, s'impose au salarié) de la <strong>modification d'un élément essentiel du contrat de travail</strong> (nécessite l'accord du salarié via avenant) [cite: 163-166]. <br>
-                La qualification professionnelle et la nature des fonctions sont des éléments essentiels.</p>
-                
-                <p><strong>L'Application (Mineure) :</strong> 
-                Passer de "Gestionnaire administratif" à "Commercial/Accueil" modifie la nature même des fonctions et la qualification. Ce n'est pas un simple changement de tâche.</p>
-                
-                <p><strong>Conclusion :</strong> 
-                Il s'agit d'une modification substantielle du contrat. L'employeur <strong>ne peut pas l'imposer</strong>. Si Sophie refuse, l'employeur devra soit renoncer, soit engager une procédure de licenciement (économique ou personnel), mais ne peut la sanctionner pour son refus.</p>
+        <div>
+            <strong>Question 2 : Quel contrat de travail ?</strong>
+            <button class="reveal-btn" onclick="toggleAnswer('ans2')">Correction</button>
+            <div id="ans2" class="answer-box">
+                [cite_start]<strong>CDD à objet défini :</strong> Idéal pour les cadres/ingénieurs, durée 18 à 36 mois, correspond parfaitement au projet[cite: 122].
             </div>
         </div>
     </div>
 
-    <div id="quiz" class="tab-content quiz-container">
-        <h2>📝 Quiz de validation</h2>
-        <div style="background:white; padding:20px; border-radius:10px;">
-            <p><strong>1. Quelle est la durée max de la période d'essai d'un cadre en CDI ?</strong></p>
-            <label class="quiz-option"><input type="radio" name="q1" onclick="check(this, false)"> 3 mois</label>
-            [cite_start]<label class="quiz-option"><input type="radio" name="q1" onclick="check(this, true)"> 4 mois [cite: 15]</label>
-            <div class="result"></div>
+    <div id="examen" class="tab-content exam-container">
+        <h2>📝 Examen Final (20 Questions)</h2>
+        <div id="score-display"></div>
 
-            <p><strong>2. Qu'est-ce qu'une "Captive" (ex: Bel Re) ?</strong></p>
-            [cite_start]<label class="quiz-option"><input type="radio" name="q2" onclick="check(this, true)"> Une assurance créée par une entreprise pour s'assurer elle-même [cite: 549]</label>
-            <label class="quiz-option"><input type="radio" name="q2" onclick="check(this, false)"> Un courtier en ligne</label>
-            <div class="result"></div>
-
-            <p><strong>3. En 2026, l'IA "Agentique" se distingue car elle est :</strong></p>
-            <label class="quiz-option"><input type="radio" name="q3" onclick="check(this, false)"> Créative</label>
-            [cite_start]<label class="quiz-option"><input type="radio" name="q3" onclick="check(this, true)"> Autonome [cite: 526]</label>
-            <div class="result"></div>
+        <div class="qcm-item" data-correct="c">
+            <div class="qcm-question">Quel élément N'EST PAS un critère du contrat de travail ?</div>
+            <div class="qcm-options">
+                <label><input type="radio" name="q1" value="a"> La rémunération</label>
+                <label><input type="radio" name="q1" value="b"> Le lien de subordination</label>
+                <label><input type="radio" name="q1" value="c"> La clause d'exclusivité</label>
+            </div>
+            [cite_start]<div class="feedback">La réponse est C. Les 3 critères sont prestation, rémunération, subordination[cite: 7].</div>
         </div>
+
+        <div class="qcm-item" data-correct="b">
+            <div class="qcm-question">Quelle est la durée max de la période d'essai pour un cadre en CDI ?</div>
+            <div class="qcm-options">
+                <label><input type="radio" name="q2" value="a"> 3 mois</label>
+                <label><input type="radio" name="q2" value="b"> 4 mois</label>
+                <label><input type="radio" name="q2" value="c"> 6 mois</label>
+            </div>
+            [cite_start]<div class="feedback">La réponse est B[cite: 15].</div>
+        </div>
+
+        <div class="qcm-item" data-correct="a">
+            <div class="qcm-question">Quels sont les 3 pouvoirs de l'employeur (lien de subordination) ?</div>
+            <div class="qcm-options">
+                <label><input type="radio" name="q3" value="a"> Direction, Contrôle, Sanction</label>
+                <label><input type="radio" name="q3" value="b"> Direction, Gestion, Sanction</label>
+                <label><input type="radio" name="q3" value="c"> Contrôle, Paiement, Formation</label>
+            </div>
+            [cite_start]<div class="feedback">La réponse est A [cite: 63-66].</div>
+        </div>
+
+        <div class="qcm-item" data-correct="b">
+            <div class="qcm-question">Quelle est la particularité du CDD de Reconversion (2026) ?</div>
+            <div class="qcm-options">
+                <label><input type="radio" name="q4" value="a"> Il remplace définitivement le CDI</label>
+                <label><input type="radio" name="q4" value="b"> Il suspend le CDI initial sans le rompre</label>
+                <label><input type="radio" name="q4" value="c"> Il est réservé aux moins de 25 ans</label>
+            </div>
+            [cite_start]<div class="feedback">La réponse est B. Le salarié retrouve son poste si échec[cite: 144].</div>
+        </div>
+
+        <div class="qcm-item" data-correct="c">
+            <div class="qcm-question">Sur quoi porte principalement la NAO ?</div>
+            <div class="qcm-options">
+                <label><input type="radio" name="q5" value="a"> La sécurité incendie</label>
+                <label><input type="radio" name="q5" value="b"> Le règlement intérieur</label>
+                <label><input type="radio" name="q5" value="c"> Les salaires et le temps de travail</label>
+            </div>
+            [cite_start]<div class="feedback">La réponse est C[cite: 29].</div>
+        </div>
+
+        <div class="qcm-item" data-correct="a">
+            <div class="qcm-question">À partir de combien de salariés le CSE est-il obligatoire ?</div>
+            <div class="qcm-options">
+                <label><input type="radio" name="q6" value="a"> 11 salariés</label>
+                <label><input type="radio" name="q6" value="b"> 50 salariés</label>
+                <label><input type="radio" name="q6" value="c"> 100 salariés</label>
+            </div>
+            [cite_start]<div class="feedback">La réponse est A[cite: 238].</div>
+        </div>
+
+        <div class="qcm-item" data-correct="b">
+            <div class="qcm-question">Quel délai de prévenance pour rompre un essai après 1 mois de présence ?</div>
+            <div class="qcm-options">
+                <label><input type="radio" name="q7" value="a"> 48 heures</label>
+                <label><input type="radio" name="q7" value="b"> 2 semaines</label>
+                <label><input type="radio" name="q7" value="c"> 1 mois</label>
+            </div>
+            [cite_start]<div class="feedback">La réponse est B[cite: 23].</div>
+        </div>
+
+        <div class="qcm-item" data-correct="c">
+            <div class="qcm-question">Pour licencier, l'employeur doit justifier d'une :</div>
+            <div class="qcm-options">
+                <label><input type="radio" name="q8" value="a"> Cause simple</label>
+                <label><input type="radio" name="q8" value="b"> Faute grave obligatoirement</label>
+                <label><input type="radio" name="q8" value="c"> Cause Réelle et Sérieuse (CRS)</label>
+            </div>
+            [cite_start]<div class="feedback">La réponse est C[cite: 178].</div>
+        </div>
+
+        <div class="qcm-item" data-correct="b">
+            <div class="qcm-question">Si l'employeur modifie un élément essentiel du contrat (ex: salaire) :</div>
+            <div class="qcm-options">
+                <label><input type="radio" name="q9" value="a"> Le salarié doit accepter</label>
+                <label><input type="radio" name="q9" value="b"> L'accord du salarié est obligatoire</label>
+                <label><input type="radio" name="q9" value="c"> C'est un simple pouvoir de direction</label>
+            </div>
+            [cite_start]<div class="feedback">La réponse est B[cite: 166].</div>
+        </div>
+
+        <div class="qcm-item" data-correct="a">
+            <div class="qcm-question">Quel motif NE PERMET PAS de recourir au CDD ?</div>
+            <div class="qcm-options">
+                <label><input type="radio" name="q10" value="a"> Remplacer un salarié gréviste</label>
+                <label><input type="radio" name="q10" value="b"> Accroissement temporaire d'activité</label>
+                <label><input type="radio" name="q10" value="c"> Emploi saisonnier</label>
+            </div>
+            [cite_start]<div class="feedback">La réponse est A[cite: 90].</div>
+        </div>
+
+        <div class="qcm-item" data-correct="b">
+            <div class="qcm-question">Selon Porter, proposer une offre unique à prix élevé est une stratégie de :</div>
+            <div class="qcm-options">
+                <label><input type="radio" name="q11" value="a"> Domination par les coûts</label>
+                <label><input type="radio" name="q11" value="b"> Différenciation</label>
+                <label><input type="radio" name="q11" value="c"> Volume</label>
+            </div>
+            [cite_start]<div class="feedback">La réponse est B[cite: 312].</div>
+        </div>
+
+        <div class="qcm-item" data-correct="c">
+            <div class="qcm-question">Quelle entreprise la Matmut a-t-elle rachetée pour se diversifier en épargne ?</div>
+            <div class="qcm-options">
+                <label><input type="radio" name="q12" value="a"> BNP Paribas</label>
+                <label><input type="radio" name="q12" value="b"> Swiss Life</label>
+                <label><input type="radio" name="q12" value="c"> HSBC Assurances Vie</label>
+            </div>
+            [cite_start]<div class="feedback">La réponse est C[cite: 337].</div>
+        </div>
+
+        <div class="qcm-item" data-correct="b">
+            <div class="qcm-question">CNP Assurances s'est diversifiée dans la santé animale avec :</div>
+            <div class="qcm-options">
+                <label><input type="radio" name="q13" value="a"> Crédit Agricole</label>
+                <label><input type="radio" name="q13" value="b"> La Poste</label>
+                <label><input type="radio" name="q13" value="c"> Amazon</label>
+            </div>
+            [cite_start]<div class="feedback">La réponse est B[cite: 442].</div>
+        </div>
+
+        <div class="qcm-item" data-correct="a">
+            <div class="qcm-question">Quel est l'objectif d'April à l'international d'ici 8-10 ans ?</div>
+            <div class="qcm-options">
+                <label><input type="radio" name="q14" value="a"> 50% du chiffre d'affaires</label>
+                <label><input type="radio" name="q14" value="b"> 20% du chiffre d'affaires</label>
+                <label><input type="radio" name="q14" value="c"> Ouvrir 100 agences</label>
+            </div>
+            [cite_start]<div class="feedback">La réponse est A[cite: 364].</div>
+        </div>
+
+        <div class="qcm-item" data-correct="c">
+            <div class="qcm-question">Quelle IA est capable d'agir de manière autonome (prévue dès 2026) ?</div>
+            <div class="qcm-options">
+                <label><input type="radio" name="q15" value="a"> IA Prédictive</label>
+                <label><input type="radio" name="q15" value="b"> IA Générative</label>
+                <label><input type="radio" name="q15" value="c"> IA Agentique</label>
+            </div>
+            [cite_start]<div class="feedback">La réponse est C[cite: 526].</div>
+        </div>
+
+        <div class="qcm-item" data-correct="a">
+            <div class="qcm-question">À quoi sert principalement l'IA Prédictive en assurance ?</div>
+            <div class="qcm-options">
+                <label><input type="radio" name="q16" value="a"> Prévoir les risques et tarifer</label>
+                <label><input type="radio" name="q16" value="b"> Rédiger des emails</label>
+                <label><input type="radio" name="q16" value="c"> Gérer l'accueil téléphonique</label>
+            </div>
+            [cite_start]<div class="feedback">La réponse est A[cite: 506].</div>
+        </div>
+
+        <div class="qcm-item" data-correct="b">
+            <div class="qcm-question">Qu'est-ce qu'une "Captive" d'assurance ?</div>
+            <div class="qcm-options">
+                <label><input type="radio" name="q17" value="a"> Une filiale otage d'un groupe</label>
+                <label><input type="radio" name="q17" value="b"> Une assurance créée par un groupe pour s'assurer lui-même</label>
+                <label><input type="radio" name="q17" value="c"> Un courtier captif d'un assureur</label>
+            </div>
+            [cite_start]<div class="feedback">La réponse est B[cite: 548].</div>
+        </div>
+
+        <div class="qcm-item" data-correct="a">
+            <div class="qcm-question">Quelle entreprise fromagère a créé sa captive "Bel Re" en 2025 ?</div>
+            <div class="qcm-options">
+                <label><input type="radio" name="q18" value="a"> Groupe Bel</label>
+                <label><input type="radio" name="q18" value="b"> Lactalis</label>
+                <label><input type="radio" name="q18" value="c"> Danone</label>
+            </div>
+            [cite_start]<div class="feedback">La réponse est A[cite: 558].</div>
+        </div>
+
+        <div class="qcm-item" data-correct="c">
+            <div class="qcm-question">Que signifie LPS ?</div>
+            <div class="qcm-options">
+                <label><input type="radio" name="q19" value="a"> Libre Protection Sociale</label>
+                <label><input type="radio" name="q19" value="b"> Loi de Protection des Sinistres</label>
+                <label><input type="radio" name="q19" value="c"> Libre Prestation de Services</label>
+            </div>
+            [cite_start]<div class="feedback">La réponse est C. C'est le passeport européen[cite: 600].</div>
+        </div>
+
+        <div class="qcm-item" data-correct="a">
+            <div class="qcm-question">Quelle activité d'assistance a augmenté de 26% en 2024 ?</div>
+            <div class="qcm-options">
+                <label><input type="radio" name="q20" value="a"> Voyage</label>
+                <label><input type="radio" name="q20" value="b"> Auto</label>
+                <label><input type="radio" name="q20" value="c"> Habitation</label>
+            </div>
+            [cite_start]<div class="feedback">La réponse est A[cite: 646].</div>
+        </div>
+
+        <button class="submit-btn" onclick="gradeExam()">✅ Valider l'Examen</button>
     </div>
 
     <script>
+        // Gestion des Onglets
         function openTab(id) {
             document.querySelectorAll('.tab-content').forEach(d => d.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            // Trouver le bouton correspondant (astuce simple)
             let btns = document.getElementsByClassName('tab-btn');
             for(let btn of btns) {
                 if(btn.onclick.toString().includes(id)) {
@@ -442,6 +541,7 @@
             }
         }
 
+        // Mindmap Toggle
         function toggle(el) {
             let details = el.nextElementSibling;
             if (details && details.classList.contains('details')) {
@@ -449,27 +549,50 @@
             }
         }
 
+        // Toggle Correction Cas
         function toggleAnswer(id) {
             let ans = document.getElementById(id);
             ans.style.display = (ans.style.display === 'block') ? 'none' : 'block';
         }
 
-        function check(input, isCorrect) {
-            let parent = input.parentElement;
-            let sibling = parent.nextElementSibling;
-            while(sibling && !sibling.classList.contains('result')) {
-                sibling = sibling.nextElementSibling;
-            }
-            if(sibling) {
-                sibling.style.display = 'block';
-                if(isCorrect) {
-                    sibling.className = 'result correct';
-                    sibling.innerHTML = "✅ Bonne réponse !";
+        // Notation de l'Examen
+        function gradeExam() {
+            let score = 0;
+            const total = 20;
+            const questions = document.querySelectorAll('.qcm-item');
+
+            questions.forEach((q, index) => {
+                const correctVal = q.getAttribute('data-correct');
+                const inputs = q.querySelectorAll('input[type="radio"]');
+                const feedback = q.querySelector('.feedback');
+                let userSelected = null;
+
+                inputs.forEach(input => {
+                    if (input.checked) userSelected = input.value;
+                    input.disabled = true; // Verrouiller
+                });
+
+                feedback.style.display = 'block';
+                if (userSelected === correctVal) {
+                    score++;
+                    feedback.className = 'feedback correct';
+                    feedback.innerHTML = "✅ Correct ! " + feedback.innerHTML;
                 } else {
-                    sibling.className = 'result wrong';
-                    sibling.innerHTML = "❌ Faux. Relisez le cours !";
+                    feedback.className = 'feedback incorrect';
+                    feedback.innerHTML = "❌ Faux. " + feedback.innerHTML;
                 }
-            }
+            });
+
+            // Afficher le score final
+            const scoreDisplay = document.getElementById('score-display');
+            scoreDisplay.style.display = 'block';
+            scoreDisplay.innerHTML = `Votre Note : ${score} / 20`;
+            
+            if(score >= 16) scoreDisplay.style.backgroundColor = "#27ae60"; // Vert
+            else if(score >= 10) scoreDisplay.style.backgroundColor = "#e67e22"; // Orange
+            else scoreDisplay.style.backgroundColor = "#c0392b"; // Rouge
+
+            window.scrollTo(0, 0); // Remonter pour voir le score
         }
     </script>
 
